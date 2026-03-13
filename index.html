@@ -1,0 +1,2470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dart 进阶教程 - 资深后端程序员视角</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Dart 进阶</h1>
+                <p class="subtitle">后端程序员视角</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#overview" class="nav-link active" data-section="overview">
+                            <span class="nav-icon">📊</span>
+                            <span>概览</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#type-system" class="nav-link" data-section="type-system">
+                            <span class="nav-icon">🔷</span>
+                            <span>类型系统</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#async-programming" class="nav-link" data-section="async-programming">
+                            <span class="nav-icon">⚡</span>
+                            <span>异步编程</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#oop" class="nav-link" data-section="oop">
+                            <span class="nav-icon">🏗️</span>
+                            <span>面向对象</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#null-safety" class="nav-link" data-section="null-safety">
+                            <span class="nav-icon">🛡️</span>
+                            <span>空安全</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#functional" class="nav-link" data-section="functional">
+                            <span class="nav-icon">🔄</span>
+                            <span>函数式编程</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#patterns" class="nav-link" data-section="patterns">
+                            <span class="nav-icon">🎯</span>
+                            <span>模式匹配</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#comparison" class="nav-link" data-section="comparison">
+                            <span class="nav-icon">⚖️</span>
+                            <span>语言对比</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">0% 完成</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="打开菜单" aria-expanded="false">
+                <span class="menu-icon">☰</span>
+            </button>
+            <div class="content-wrapper">
+                <section id="overview" class="section active">
+                    <div class="section-header">
+                        <h2 class="section-title">概览</h2>
+                        <div class="section-badge">Go 程序员视角</div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>为什么 Go 程序员要学习 Dart？</h3>
+                        <p>作为 Go 程序员，你已经习惯了简洁、高效、并发优先的编程范式。Dart 作为一门现代语言，在某些方面与 Go 相似，但在其他方面提供了不同的解决方案：</p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">⚡</div>
+                                <h4>并发模型对比</h4>
+                                <p>Go: Goroutine + Channel<br>Dart: Event Loop + Isolate</p>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🎯</div>
+                                <h4>错误处理</h4>
+                                <p>Go: error 返回值<br>Dart: Exception + try/catch</p>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🏗️</div>
+                                <h4>类型系统</h4>
+                                <p>Go: 结构体 + 组合<br>Dart: 类 + 继承 + Mixin</p>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🔄</div>
+                                <h4>异步编程</h4>
+                                <p>Go: goroutine + select<br>Dart: async/await + Stream</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>核心差异速览</h3>
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>特性</th>
+                                        <th>Dart</th>
+                                        <th>Go</th>
+                                        <th>对 Go 程序员的影响</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>类型系统</td>
+                                        <td class="highlight">面向对象 + 泛型</td>
+                                        <td>组合优先 + 泛型</td>
+                                        <td>需要适应继承和类概念</td>
+                                    </tr>
+                                    <tr>
+                                        <td>并发模型</td>
+                                        <td>Event Loop + Isolate</td>
+                                        <td class="highlight">Goroutine + Channel</td>
+                                        <td>理解单线程 Event Loop 模型</td>
+                                    </tr>
+                                    <tr>
+                                        <td>错误处理</td>
+                                        <td class="highlight">Exception + try/catch</td>
+                                        <td>error 返回值</td>
+                                        <td>适应异常而非错误值</td>
+                                    </tr>
+                                    <tr>
+                                        <td>编译方式</td>
+                                        <td class="highlight">JIT + AOT 双模式</td>
+                                        <td>AOT</td>
+                                        <td>享受热重载开发体验</td>
+                                    </tr>
+                                    <tr>
+                                        <td>接口</td>
+                                        <td class="highlight">显式 implements</td>
+                                        <td>隐式鸭子类型</td>
+                                        <td>需要显式声明接口实现</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Hello World 对比</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本
+package main
+
+import "fmt"
+
+func main() {
+    // 类型推断
+    name := "Go"
+    
+    // fmt.Printf 不支持字符串插值
+    fmt.Printf("Hello, %s!\n", name)
+    
+    // 数组 vs 切片
+    numbers := []int{1, 2, 3, 4, 5}
+    
+    // 没有级联操作符
+    numbers = append(numbers, 6)
+    sort.Ints(numbers)
+    
+    // 匿名函数
+    doubled := mapFunc(numbers, func(n int) int {
+        return n * 2
+    })
+    fmt.Println(doubled)
+}
+
+func mapFunc(arr []int, fn func(int) int) []int {
+    result := make([]int, len(arr))
+    for i, v := range arr {
+        result[i] = fn(v)
+    }
+    return result
+}
+
+// ====================
+
+// Dart 版本
+void main() {
+  // 类型推断（与 Go 的 := 类似）
+  var name = 'Dart';
+  
+  // 字符串插值（Go 需要 fmt.Printf）
+  print('Hello, $name!');
+  
+  // List（Go 是 slice）
+  var numbers = [1, 2, 3, 4, 5];
+  
+  // 级联操作符（Go 没有这个）
+  numbers
+    ..add(6)
+    ..sort();
+    
+  // 箭头函数（Go 是匿名函数）
+  var doubled = numbers.map((n) => n * 2);
+  print(doubled); // (2, 4, 6, 8, 10, 12)
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Go → Dart 学习路径</h3>
+                        <ul class="feature-list">
+                            <li><strong>语法相似性</strong>：变量声明、函数定义、import 语句都很相似</li>
+                            <li><strong>最大的转变</strong>：从结构体+组合转向类+继承，从 error 值转向异常</li>
+                            <li><strong>并发思维</strong>：从多线程 Goroutine 转向单线程 Event Loop</li>
+                            <li><strong>类型系统</strong>：从隐式接口转向显式 implements</li>
+                            <li><strong>空安全</strong>：Dart 的空安全比 Go 的 nil 更严格</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="type-system" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">类型系统</h2>
+                        <div class="section-badge">Go 对比</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>类型推断对比</h3>
+                        <p>Go 的 := 和 Dart 的 var 很相似，但语义有些差异</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 类型推断</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本
+package main
+
+func main() {
+    // := 只能在函数内使用
+    name := "Go"           // 推断为 string
+    count := 42            // 推断为 int
+    items := []string{}    // 推断为 []string
+    
+    // const 需要编译时确定
+    const maxItems = 100
+    
+    // Go 没有类似于 Dart 的 final
+    // 如果要不可变，使用大写命名约定（包外不可见）或不修改
+}
+
+// ====================
+
+// Dart 版本
+void main() {
+  // var 可在任意位置使用
+  var name = 'Dart';        // 推断为 String
+  final count = 42;         // 推断为 int（运行时常量，不可变）
+  const maxItems = 100;     // 编译时常量
+  late Config config;       // 延迟初始化（Go 没有这个）
+  
+  // List 字面量
+  var items = <String>[];   // 明确泛型
+  
+  // ⚠️ 注意：Dart 的 var 是类型推断，不是重新赋值
+  // var message = calculate(); // 如果返回类型不明确，建议显式声明
+  
+  // ✅ 推荐明确类型
+  String result = calculate(); // 清晰表达意图
+  
+  // ✅ 返回类型和参数类型必须明确
+  List<User> getUsersById(List<int> ids) {
+    return ids.map((id) => User.findById(id)).toList();
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>泛型系统对比</h3>
+                        <p>Go 1.18+ 支持泛型，与 Dart 的泛型系统在约束语法上有所不同</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 泛型约束</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本
+package main
+
+import "fmt"
+
+// 约束：类型参数必须实现指定接口
+type Numeric interface {
+    int | int64 | float64
+}
+
+func Sum[T Numeric](values []T) T {
+    var total T
+    for _, v := range values {
+        total += v
+    }
+    return total
+}
+
+// 多个类型参数
+func Pair[K comparable, V any](k K, v V) (K, V) {
+    return k, v
+}
+
+// 嵌套约束
+type Ordered interface {
+    comparable
+    Less(other any) bool
+}
+
+func Sort[T Ordered](values []T) {
+    // 排序逻辑
+}
+
+// ====================
+
+// Dart 版本
+// 泛型约束：使用 extends 关键字
+class Repository<T extends Entity> {
+  final Map<int, T> _cache = {};
+  
+  Future<T?> findById(int id) async {
+    if (_cache.containsKey(id)) {
+      return _cache[id];
+    }
+    final data = await _fetchFromDb(id);
+    if (data != null) {
+      _cache[id] = data;
+    }
+    return data;
+  }
+  
+  Future<T?> _fetchFromDb(int id);
+}
+
+// 泛型方法
+T firstOrNull<T>(List<T> list) {
+  return list.isEmpty ? null : list.first;
+}
+
+// 多重约束（Dart 使用 & 符号，Go 需要定义组合接口）
+class Serializer<T extends Serializable & Comparable<T>> {
+  String serialize(T obj) {
+    return obj.toJson();
+  }
+}
+
+// Go 的 any 对应 Dart 的 Object? 或 dynamic
+// Go 的 comparable 对应 Dart 没有直接等价物，需要手动实现 == 和 hashCode
+
+// 使用
+final userRepo = Repository<User>();
+final result = firstOrNull<String>(['a', 'b']); // 'a'
+final sum = Sum<int>([1, 2, 3]); // 6</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>扩展方法对比</h3>
+                        <p>Dart 的 extension 是 Go 没有的强大特性，无需继承即可扩展类型</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 扩展方法</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - Go 没有扩展方法！
+// 只能创建辅助函数
+package main
+
+import (
+    "fmt"
+    "regexp"
+    "strings"
+)
+
+func IsValidEmail(email string) bool {
+    matched, _ := regexp.MatchString(
+        `^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$`, 
+        email,
+    )
+    return matched
+}
+
+func Capitalize(s string) string {
+    if len(s) == 0 {
+        return s
+    }
+    return strings.ToUpper(string(s[0])) + s[1:]
+}
+
+// 使用
+email := "test@example.com"
+if IsValidEmail(email) {
+    fmt.Println(Capitalize(email))
+}
+
+// ====================
+
+// Dart 版本 - Extension 提供原生支持
+// 扩展 String
+extension StringValidation on String {
+  bool get isValidEmail => 
+      RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(this);
+  
+  String capitalize() => 
+      this.isEmpty ? this : this[0].toUpperCase() + substring(1);
+}
+
+// 扩展 List - 泛型扩展
+extension ListOperations<T> on List<T> {
+  List<T> distinct() => [...{...this}];
+  
+  T? firstWhereOrNull(bool Function(T) test) {
+    for (var item in this) {
+      if (test(item)) return item;
+    }
+    return null;
+  }
+}
+
+// 使用 - 语法更自然，像原生方法
+print('test@example.com'.isValidEmail); // true
+print('hello'.capitalize()); // 'Hello'
+print([1, 2, 2, 3].distinct()); // [1, 2, 3]
+print(['a', 'b'].firstWhereOrNull((s) => s == 'b')); // 'b'</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>类型系统关键差异</h3>
+                        <ul class="feature-list">
+                            <li><strong>接口实现</strong>：Go 是隐式鸭子类型，Dart 需要显式 implements</li>
+                            <li><strong>空安全</strong>：Dart 在编译时保证，Go 运行时可能出现 nil panic</li>
+                            <li><strong>扩展方法</strong>：Dart 有原生 extension，Go 只能用辅助函数</li>
+                            <li><strong>类型推断</strong>：Go 的 := 只能在函数内，Dart 的 var 无此限制</li>
+                            <li><strong>泛型约束</strong>：Go 使用接口组合，Dart 使用 extends 和 &</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="async-programming" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">异步编程</h2>
+                        <div class="section-badge">并发模型对比</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>并发模型根本差异</h3>
+                        <p>这是 Go 和 Dart 最大的区别！理解这一点对 Go 程序员至关重要：</p>
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>特性</th>
+                                        <th>Go</th>
+                                        <th>Dart</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>执行模型</td>
+                                        <td class="highlight">多线程（M:N 调度）</td>
+                                        <td>单线程 Event Loop</td>
+                                    </tr>
+                                    <tr>
+                                        <td>并发原语</td>
+                                        <td class="highlight">Goroutine + Channel</td>
+                                        <td>Future + Stream + Isolate</td>
+                                    </tr>
+                                    <tr>
+                                        <td>通信方式</td>
+                                        <td class="highlight">共享内存 + Channel</td>
+                                        <td>消息传递（Isolate 间）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>数据共享</td>
+                                        <td class="highlight">共享可变状态（需同步）</td>
+                                        <td>默认不可共享（Isolate 隔离）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>阻塞操作</td>
+                                        <td>阻塞 Goroutine（调度器处理）</td>
+                                        <td>阻塞整个 Event Loop（需避免）</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>并发执行对比</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 并发执行</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - Goroutine
+package main
+
+import (
+    "fmt"
+    "sync"
+)
+
+func fetchUserData(userId int, wg *sync.WaitGroup, ch chan<- string) {
+    defer wg.Done()
+    // 阻塞操作不会阻塞其他 goroutine
+    data := httpGet(fmt.Sprintf("/api/users/%d", userId))
+    ch <- data
+}
+
+func loadDashboard() {
+    var wg sync.WaitGroup
+    ch := make(chan string, 3)
+    
+    wg.Add(3)
+    go fetchUserData(1, &wg, ch)
+    go fetchUserPosts(1, &wg, ch)
+    go fetchUserSettings(1, &wg, ch)
+    
+    // 等待所有 goroutine 完成
+    go func() {
+        wg.Wait()
+        close(ch)
+    }()
+    
+    // 收集结果
+    results := make([]string, 0)
+    for data := range ch {
+        results = append(results, data)
+    }
+    
+    renderDashboard(results)
+}
+
+// 错误处理 - Go 使用 error 返回值
+func safeFetch() error {
+    data, err := fetchData()
+    if err != nil {
+        return fmt.Errorf("fetch failed: %w", err)
+    }
+    fmt.Println(data)
+    return nil
+}
+
+// ====================
+
+// Dart 版本 - async/await
+// 注意：Dart 默认单线程，async/await 让出执行权给 Event Loop
+Future<String> fetchUserData(int userId) async {
+  final response = await http.get('/api/users/$userId');
+  if (response.statusCode == 200) {
+    return response.body;
+  }
+  throw Exception('Failed to load user');
+}
+
+// 并发执行 - 类似 Go 的 WaitGroup
+Future<void> loadDashboard() async {
+  // 并行请求（Go 使用 goroutine + channel）
+  final results = await Future.wait([
+    fetchUserData(1),
+    fetchUserPosts(1),
+    fetchUserSettings(1),
+  ]);
+  
+  final [user, posts, settings] = results;
+  renderDashboard(user, posts, settings);
+}
+
+// 错误处理 - Dart 使用异常（Go 用 error 值）
+Future<void> safeFetch() async {
+  try {
+    final data = await fetchData();
+    print(data);
+  } on TimeoutException catch (e) {
+    print('请求超时: $e');
+  } on HttpException catch (e) {
+    print('HTTP错误: $e');
+  } catch (e) {
+    print('未知错误: $e');
+  } finally {
+    print('请求完成');
+  }
+}
+
+// 关键差异：
+// 1. Go: goroutine 可以真正并行执行（多核）
+// 2. Dart: async/await 只是让出执行权，仍是单线程
+// 3. Go: channel 用于通信，也可以同步
+// 4. Dart: Future.wait 等待多个 Future 完成</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Stream vs Channel</h3>
+                        <p>Dart 的 Stream 类似 Go 的 Channel，但语义不同</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 数据流处理</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - Channel
+package main
+
+func counter(ch chan<- int) {
+    for i := 1; i <= 10; i++ {
+        time.Sleep(time.Second)
+        ch <- i
+    }
+    close(ch)
+}
+
+func listenToCounter() {
+    ch := make(chan int)
+    go counter(ch)
+    
+    for value := range ch {
+        fmt.Printf("计数: %d\n", value)
+    }
+}
+
+// 使用 select 处理多个 channel
+func worker(id int, jobs <-chan int, results chan<- int) {
+    for j := range jobs {
+        results <- j * 2
+    }
+}
+
+func main() {
+    jobs := make(chan int, 100)
+    results := make(chan int, 100)
+    
+    for w := 1; w <= 3; w++ {
+        go worker(w, jobs, results)
+    }
+    
+    // select 监听多个 channel
+    select {
+    case msg := <-ch1:
+        fmt.Println(msg)
+    case msg := <-ch2:
+        fmt.Println(msg)
+    case <-time.After(time.Second):
+        fmt.Println("超时")
+    }
+}
+
+// ====================
+
+// Dart 版本 - Stream
+// 创建 Stream
+Stream<int> counter() async* {
+  for (int i = 1; i <= 10; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i;
+  }
+}
+
+// 监听 Stream
+void listenToCounter() {
+  counter().listen(
+    (value) => print('计数: $value'),
+    onError: (error) => print('错误: $error'),
+    onDone: () => print('完成'),
+  );
+}
+
+// Stream 转换 - 函数式风格（Go 需要手动写循环）
+Stream<String> processEvents() {
+  return eventStream
+    .where((event) => event.type == 'important')      // 过滤
+    .map((event) => event.message.toUpperCase())      // 映射
+    .take(10)                                          // 限制数量
+    .distinct();                                       // 去重
+}
+
+// Dart 没有直接等价于 select 的语法
+// 但可以使用 StreamGroup 合并多个 Stream
+import 'package:async/async.dart';
+
+void advancedStreamProcessing() {
+  final merged = StreamGroup.merge([
+    userEvents,
+    systemEvents,
+  ]);
+  
+  merged
+    .debounce(Duration(milliseconds: 300))   // 防抖
+    .buffer(Duration(seconds: 1))            // 批处理
+    .listen((events) => processBatch(events));
+}
+
+// 关键差异：
+// 1. Go: channel 是缓冲的或有界的，可以用于同步
+// 2. Dart: Stream 是推式的，类似 RxJS 的 Observable
+// 3. Go: select 可以等待多个 channel（Dart 需要用 StreamGroup）
+// 4. Dart: Stream 有丰富的操作符（map, filter, reduce 等）
+// 5. Go: channel 通信会复制数据（除非用指针），Dart Stream 传递引用</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>并行计算：Goroutine vs Isolate</h3>
+                        <p>当需要真正并行计算时，Dart 使用 Isolate，类似 Go 的 goroutine</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: CPU 密集型任务</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - Goroutine + Channel
+package main
+
+func computePrimes(n int) []int {
+    primes := []int{}
+    for i := 2; i <= n; i++ {
+        if isPrime(i) {
+            primes = append(primes, i)
+        }
+    }
+    return primes
+}
+
+func isPrime(n int) bool {
+    if n < 2 {
+        return false
+    }
+    for i := 2; i*i <= n; i++ {
+        if n%i == 0 {
+            return false
+        }
+    }
+    return true
+}
+
+func heavyComputation(n int, results chan<- []int) {
+    primes := computePrimes(n)
+    results <- primes
+}
+
+func main() {
+    results := make(chan []int)
+    
+    // 启动多个 goroutine 并行计算
+    go heavyComputation(1000000, results)
+    go heavyComputation(2000000, results)
+    
+    // 获取结果
+    result := <-results
+    fmt.Printf("找到 %d 个质数\n", len(result))
+}
+
+// ====================
+
+// Dart 版本 - Isolate
+// Dart 默认单线程，CPU 密集型任务需要用 Isolate
+Future<int> heavyComputation(int n) async {
+  return await Isolate.run(() => _computePrimes(n));
+}
+
+List<int> _computePrimes(int n) {
+  final primes = <int>[];
+  for (int i = 2; i <= n; i++) {
+    if (_isPrime(i)) primes.add(i);
+  }
+  return primes;
+}
+
+bool _isPrime(int n) {
+  if (n < 2) return false;
+  for (int i = 2; i * i <= n; i++) {
+    if (n % i == 0) return false;
+  }
+  return true;
+}
+
+// 使用
+void main() async {
+  // Isolate.run 在独立的 isolate 中执行
+  final result = await heavyComputation(1000000);
+  print('找到 ${result.length} 个质数');
+  
+  // 也可以使用多个 Isolate 并行计算
+  final results = await Future.wait([
+    heavyComputation(1000000),
+    heavyComputation(2000000),
+  ]);
+}
+
+// 关键差异：
+// 1. Go: goroutine 共享内存（需同步），轻量级（~2KB 栈）
+// 2. Dart: Isolate 完全隔离，不共享内存，通过消息传递通信
+// 3. Go: goroutine 数量可以很大（百万级），调度器自动管理
+// 4. Dart: Isolate 数量有限（通常 < 100），因为每个都有独立内存
+// 5. Go: 数据传递复制值（除非用指针），Dart: 消息传递序列化数据</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Go 程序员迁移指南</h3>
+                        <ul class="feature-list">
+                            <li><strong>不要阻塞 Event Loop</strong>：Dart 单线程，同步阻塞会卡死整个应用</li>
+                            <li><strong>async/await 不是真正的并行</strong>：只是让出执行权，类似 Go 的 goroutine yield</li>
+                            <li><strong>Isolate 用于 CPU 密集型</strong>：类似 Go 的 goroutine，但成本更高</li>
+                            <li><strong>Stream 是推式的</strong>：Go channel 可以拉取，Dart Stream 只能监听</li>
+                            <li><strong>错误处理方式</strong>：Go 用 error 返回值，Dart 用异常</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="oop" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">面向对象</h2>
+                        <div class="section-badge">结构体 vs 类</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>结构体 vs 类</h3>
+                        <p>Go 的结构体和 Dart 的类在概念上有根本差异</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 数据结构定义</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - 结构体
+package main
+
+import "fmt"
+
+// 结构体定义
+type User struct {
+    ID    string
+    Name  string
+    Email string
+    // 嵌入结构体（组合）
+    Profile
+    CreatedAt time.Time
+}
+
+// 嵌入的结构体
+type Profile struct {
+    Avatar string
+    Bio    string
+}
+
+// 构造函数（不是语法特性，只是约定）
+func NewUser(name, email string) *User {
+    return &User{
+        ID:        generateID(),
+        Name:      name,
+        Email:     email,
+        CreatedAt: time.Now(),
+    }
+}
+
+// 方法（接收者可以是值或指针）
+func (u *User) UpdateEmail(email string) {
+    u.Email = email
+}
+
+func (u User) FullName() string {
+    return u.Name
+}
+
+// JSON 序列化需要 struct tags
+type User struct {
+    ID    string `json:"id"`
+    Name  string `json:"name"`
+    Email string `json:"email"`
+}
+
+func (u User) ToJSON() ([]byte, error) {
+    return json.Marshal(u)
+}
+
+// ====================
+
+// Dart 版本 - 类
+class User {
+  final String id;
+  final String name;
+  final String email;
+  final DateTime createdAt;
+  
+  // 父类（Go 没有继承，只有组合）
+  User({
+    required this.id,
+    required this.name,
+    required this.email,
+    DateTime? createdAt,
+  }) : createdAt = createdAt ?? DateTime.now();
+  
+  // 命名构造函数（Go 没有这个）
+  User.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        name = json['name'],
+        email = json['email'],
+        createdAt = DateTime.parse(json['createdAt']);
+  
+  // 工厂构造函数（Go 用 NewUser 函数）
+  factory User.create({
+    required String name,
+    required String email,
+  }) {
+    return User(
+      id: generateID(),
+      name: name,
+      email: email,
+    );
+  }
+  
+  // 方法（Dart 不需要显式的接收者声明）
+  void updateEmail(String newEmail) {
+    // Dart 的 final 字段不能修改
+    // 需要返回新实例
+    // User updatedUser = this.copyWith(email: newEmail);
+  }
+  
+  String get fullName => name;
+  
+  // copyWith 模式（Go 没有这个语法糖）
+  User copyWith({
+    String? id,
+    String? name,
+    String? email,
+    DateTime? createdAt,
+  }) {
+    return User(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
+  
+  // 序列化
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'email': email,
+    'createdAt': createdAt.toIso8601String(),
+  };
+}
+
+// 关键差异：
+// 1. Go: 结构体是值类型，可以复制；Dart: 类是引用类型
+// 2. Go: 字段默认导出（大写）；Dart: 字段默认私有（下划线前缀）
+// 3. Go: 方法接收者可以是值或指针；Dart: 方法隐式使用 this
+// 4. Go: 没有继承，只有组合；Dart: 支持继承和组合
+// 5. Go: JSON 需要 struct tags；Dart: 使用 toJson/fromJson 方法</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>接口实现对比</h3>
+                        <p>Go 的隐式接口 vs Dart 的显式接口</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 接口实现</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - 隐式接口
+package main
+
+// 接口定义
+type Repository[T any] interface {
+    FindByID(id int) (T, error)
+    FindAll() ([]T, error)
+    Save(entity T) error
+    Delete(id int) error
+}
+
+// 结构体不需要显式声明实现了接口
+// 只要方法签名匹配就自动实现
+type UserRepository struct {
+    db *sql.DB
+}
+
+func (r *UserRepository) FindByID(id int) (User, error) {
+    // 实现
+}
+
+func (r *UserRepository) FindAll() ([]User, error) {
+    // 实现
+}
+
+func (r *UserRepository) Save(user User) error {
+    // 实现
+}
+
+func (r *UserRepository) Delete(id int) error {
+    // 实现
+}
+
+// 使用 - 可以接受任何实现了 Repository[User] 的类型
+func UseRepository(repo Repository[User]) {
+    user, _ := repo.FindByID(1)
+    fmt.Println(user)
+}
+
+// ====================
+
+// Dart 版本 - 显式接口
+// 抽象类定义契约
+abstract class Repository<T> {
+  Future<T?> findById(int id);
+  Future<List<T>> findAll();
+  Future<T> save(T entity);
+  Future<void> delete(int id);
+}
+
+// 必须显式声明 implements
+class UserRepository implements Repository<User> {
+  final Database _db;
+  
+  UserRepository(this._db);
+  
+  @override
+  Future<User?> findById(int id) async {
+    final data = await _db.query('users', where: 'id = ?', whereArgs: [id]);
+    return data.isNotEmpty ? User.fromJson(data.first) : null;
+  }
+  
+  @override
+  Future<List<User>> findAll() async {
+    final data = await _db.query('users');
+    return data.map((json) => User.fromJson(json)).toList();
+  }
+  
+  @override
+  Future<User> save(User user) async {
+    // 实现
+  }
+  
+  @override
+  Future<void> delete(int id) async {
+    // 实现
+  }
+}
+
+// 使用
+void useRepository(Repository<User> repo) {
+  repo.findById(1).then((user) => print(user));
+}
+
+// 关键差异：
+// 1. Go: 隐式实现（鸭子类型），无需声明
+// 2. Dart: 显式声明 implements，必须实现所有方法
+// 3. Go: 可以在包外定义接口匹配现有类型
+// 4. Dart: 需要修改类声明才能实现接口
+// 5. Go: 接口方法接收者类型必须一致（值 vs 指针）</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Mixin vs 组合</h3>
+                        <p>Dart 的 Mixin 是 Go 没有的强大特性</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 代码复用</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - 结构体嵌入
+package main
+
+// 通过结构体嵌入实现"组合"
+type Timestamped struct {
+    CreatedAt time.Time
+    UpdatedAt time.Time
+}
+
+func (t *Timestamped) Touch() {
+    t.UpdatedAt = time.Now()
+    if t.CreatedAt.IsZero() {
+        t.CreatedAt = t.UpdatedAt
+    }
+}
+
+type Validatable struct {
+    Errors []string
+}
+
+func (v *Validatable) IsValid() bool {
+    return len(v.Errors) == 0
+}
+
+// 嵌入多个结构体
+type User struct {
+    ID    string
+    Name  string
+    // 嵌入结构体
+    Timestamped
+    Validatable
+}
+
+// 使用嵌入的方法
+user := &User{}
+user.Touch()
+user.Errors = []string{"error"}
+
+// ====================
+
+// Dart 版本 - Mixin
+// Mixin 提供可复用功能（类似 Go 的结构体嵌入，但更强大）
+mixin Timestamped {
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  
+  void touch() {
+    updatedAt = DateTime.now();
+    createdAt ??= updatedAt;
+  }
+}
+
+mixin Validatable {
+  bool get isValid;
+  List<String> get errors;
+}
+
+// 使用 Mixin（可以同时使用多个）
+class User extends Entity with Timestamped, Validatable {
+  final String name;
+  final String email;
+  
+  User({required this.name, required this.email});
+  
+  // 必须实现 Mixin 的抽象成员
+  @override
+  bool get isValid => name.isNotEmpty && email.contains('@');
+  
+  @override
+  List<String> get errors {
+    final errors = <String>[];
+    if (name.isEmpty) errors.add('姓名不能为空');
+    if (!email.contains('@')) errors.add('邮箱格式错误');
+    return errors;
+  }
+}
+
+// 使用
+final user = User(name: 'John', email: 'john@example.com');
+user.touch();  // 来自 Timestamped mixin
+print(user.isValid);  // 来自 Validatable mixin
+
+// 关键差异：
+// 1. Go: 结构体嵌入，访问嵌入字段需要通过结构体名
+// 2. Dart: Mixin 的成员直接可用，像自己的方法
+// 3. Go: 嵌入的字段实际上是结构体的字段
+// 4. Dart: Mixin 可以定义抽象成员，要求类实现
+// 5. Go: 嵌入多个同名字段会有冲突
+// 6. Dart: Mixin 可以有 on 子句限制使用条件</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>单例模式对比</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 单例实现</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - 包级变量 + sync.Once
+package main
+
+import "sync"
+
+var (
+    instance *Database
+    once     sync.Once
+)
+
+type Database struct {
+    path string
+}
+
+func GetDatabase(path string) *Database {
+    once.Do(func() {
+        instance = &Database{path: path}
+    })
+    return instance
+}
+
+// 或者在 init 函数中初始化
+var db *Database
+
+func init() {
+    db = &Database{path: "default.db"}
+}
+
+// ====================
+
+// Dart 版本 - 工厂构造函数
+class Database {
+  static Database? _instance;
+  final String _path;
+  
+  // 私有构造函数
+  Database._internal(this._path);
+  
+  // 工厂构造函数
+  factory Database.getInstance({required String path}) {
+    _instance ??= Database._internal(path);
+    return _instance!;
+  }
+  
+  // 或者使用静态 getter
+  static Database get instance => _instance!;
+  
+  Future<void> connect() async {
+    // 连接逻辑
+  }
+}
+
+// 使用
+final db = Database.getInstance(path: 'app.db');
+await db.connect();
+
+// 关键差异：
+// 1. Go: 使用 sync.Once 保证只初始化一次
+// 2. Dart: 使用工厂构造函数和静态变量
+// 3. Go: 可以在 init 函数中初始化（包加载时）
+// 4. Dart: 工厂构造函数更灵活，可以延迟初始化</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Go 程序员迁移指南</h3>
+                        <ul class="feature-list">
+                            <li><strong>从组合转向继承</strong>：Go 只有组合，Dart 有继承+组合</li>
+                            <li><strong>显式接口实现</strong>：需要用 implements 关键字声明</li>
+                            <li><strong>Mixin 的威力</strong>：类似结构体嵌入，但更强大，支持抽象成员</li>
+                            <li><strong>构造函数语法</strong>：Dart 有多种构造函数（默认、命名、工厂）</li>
+                            <li><strong>方法接收者</strong>：Dart 不需要显式声明接收者，隐式使用 this</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="null-safety" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">空安全</h2>
+                        <div class="section-badge">nil vs null</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>空安全根本差异</h3>
+                        <p>Dart 的 Sound Null Safety 在编译时保证，Go 的 nil 检查在运行时</p>
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>特性</th>
+                                        <th>Go</th>
+                                        <th>Dart</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>空值表示</td>
+                                        <td>nil</td>
+                                        <td>null</td>
+                                    </tr>
+                                    <tr>
+                                        <td>检查时机</td>
+                                        <td>运行时</td>
+                                        <td class="highlight">编译时</td>
+                                    </tr>
+                                    <tr>
+                                        <td>默认类型</td>
+                                        <td>可能为 nil</td>
+                                        <td class="highlight">不可为 null</td>
+                                    </tr>
+                                    <tr>
+                                        <td>可空类型</td>
+                                        <td>指针、slice、map、chan、interface</td>
+                                        <td>类型后加 ?</td>
+                                    </tr>
+                                    <tr>
+                                        <td>安全保证</td>
+                                        <td>panic if nil</td>
+                                        <td class="highlight">编译错误</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>空值处理对比</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 空值处理</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - nil 检查
+package main
+
+import "fmt"
+
+// Go 的 nil - 某些类型默认就是 nil
+var name string  // 空字符串 "", 不是 nil
+var ptr *int     // nil
+var slice []int  // nil
+var m map[string]int  // nil
+var ch chan int  // nil
+
+// 函数返回 nil
+func getUser(id int) *User {
+    // 没找到返回 nil
+    return nil
+}
+
+// 使用前必须检查 nil
+func processUser(id int) error {
+    user := getUser(id)
+    if user == nil {  // 运行时检查
+        return fmt.Errorf("user not found")
+    }
+    fmt.Println(user.Name)
+    return nil
+}
+
+// 多重 nil 检查
+func getUserName(data map[string]interface{}) string {
+    if data == nil {
+        return ""
+    }
+    if user, ok := data["user"]; ok {
+        if u, ok := user.(*User); ok && u != nil {
+            if u.Profile != nil {
+                return u.Profile.Name
+            }
+        }
+    }
+    return ""
+}
+
+// ====================
+
+// Dart 版本 - 编译时空安全
+// 非空类型（默认）
+String name = 'John';  // 不能为 null
+// name = null;  // 编译错误！
+
+// 可空类型
+String? nickname;  // 可以为 null
+nickname = null;  // OK
+
+// 空值合并操作符（Go 用三元表达式）
+String displayName = nickname ?? name;  // 如果 nickname 为 null，使用 name
+
+// 空值断言操作符（类似 Go 的 ! 但更安全）
+print(nickname!.length);  // 如果 nickname 为 null，抛出异常
+
+// 条件访问操作符（Go 需要多重 if 检查）
+print(user?.profile?.settings?.theme);  // 链式调用，任何环节为 null 都返回 null
+
+// 函数返回可空类型
+User? getUser(int id) {
+  // 没找到返回 null
+  return null;
+}
+
+// 编译器强制处理 null
+void processUser(int id) {
+  final user = getUser(id);
+  // print(user.name);  // 编译错误！user 可能为 null
+  
+  // 必须处理 null
+  if (user != null) {
+    print(user.name);
+  }
+  
+  // 或者使用 ??
+  print(user?.name ?? 'Unknown');
+}
+
+// 等价于 Go 的多重 nil 检查
+String getUserName(Map<String, dynamic>? data) {
+  return data?['user']?.profile?.name ?? '';
+}
+
+// late 延迟初始化（Go 没有这个概念）
+class Config {
+  late final String apiKey;
+  
+  Config() {
+    _loadApiKey();
+  }
+  
+  Future<void> _loadApiKey() async {
+    apiKey = await fetchApiKey();
+  }
+}
+
+// 关键差异：
+// 1. Go: nil 是运行时问题，可能导致 panic
+// 2. Dart: null 在编译时检查，更安全
+// 3. Go: 某些类型（slice, map）默认就是 nil
+// 4. Dart: 所有类型默认非空，必须显式声明可空
+// 5. Go: 需要手动检查 nil，容易遗漏
+// 6. Dart: 编译器强制处理 null，不会遗漏</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>空安全最佳实践</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 最佳实践</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - 防御性编程
+package main
+
+type UserService struct {
+    repo *UserRepository
+}
+
+func (s *UserService) GetUser(id string) (*User, error) {
+    user, err := s.repo.FindByID(id)
+    if err != nil {
+        return nil, err
+    }
+    if user == nil {
+        return &User{ID: "notfound"}, nil  // 返回默认值
+    }
+    return user, nil
+}
+
+func ValidateEmail(email string) error {
+    if email == "" {
+        return fmt.Errorf("email cannot be empty")
+    }
+    if !strings.Contains(email, "@") {
+        return fmt.Errorf("invalid email format")
+    }
+    return nil
+}
+
+// ====================
+
+// Dart 版本 - 编译时保证
+// ✅ 推荐：尽量使用非空类型
+class UserService {
+  final UserRepository _repository;
+  
+  // 构造函数保证依赖非空
+  UserService(this._repository);
+  
+  // 返回非空类型，必须处理 null 情况
+  Future<User> getUser(String id) async {
+    final user = await _repository.findById(id);
+    return user ?? User.notFound();  // 提供默认值
+  }
+}
+
+// ✅ 使用 early return
+String? validateEmail(String? email) {
+  if (email == null) return '邮箱不能为空';
+  if (!email.contains('@')) return '邮箱格式错误';
+  return null;  // 验证通过
+}
+
+// ✅ 使用 let 模式（Dart 3，Go 没有这个）
+void processUser(User? user) {
+  user?.let((u) {
+    print('处理用户: ${u.name}');
+    sendNotification(u);
+  });
+}
+
+// ✅ 使用 switch 表达式处理可空值（Go 需要多个 if）
+String getStatus(User? user) {
+  return switch (user) {
+    null => '未登录',
+    User(isActive: true) => '活跃',
+    User(isActive: false) => '不活跃',
+  };
+}
+
+// 关键差异：
+// 1. Go: 返回 error 处理错误，用 nil 表示"无值"
+// 2. Dart: 用可空类型表示"无值"，用异常处理错误
+// 3. Go: 依赖约定和防御性编程
+// 4. Dart: 编译器强制安全，不需要防御性检查
+// 5. Go: nil 可以出现在任何地方，需要手动检查
+// 6. Dart: 可空性在类型系统中明确，编译器帮助检查</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Go 程序员迁移指南</h3>
+                        <ul class="feature-list">
+                            <li><strong>编译时 vs 运行时</strong>：Dart 在编译时捕获 null 问题，Go 在运行时 panic</li>
+                            <li><strong>可空类型显式声明</strong>：Dart 需要用 ? 标记可空类型，Go 默认某些类型可为 nil</li>
+                            <li><strong>强制处理 null</strong>：Dart 编译器强制你处理 null，Go 需要手动检查</li>
+                            <li><strong>条件访问操作符</strong>：Dart 的 ?. 替代 Go 的多重 nil 检查</li>
+                            <li><strong>late 关键字</strong>：Dart 可以延迟初始化非空字段，Go 需要用指针或返回值</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="functional" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">函数式编程</h2>
+                        <div class="section-badge">函数特性对比</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>函数作为一等公民</h3>
+                        <p>Go 和 Dart 都支持函数作为一等公民，但语法略有不同</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 高阶函数</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本
+package main
+
+import "fmt"
+
+// 函数类型
+type Validator func(string) error
+
+func validateInput(input string, validators []Validator) error {
+    for _, validator := range validators {
+        if err := validator(input); err != nil {
+            return err
+        }
+    }
+    return nil
+}
+
+// 使用
+func main() {
+    email := "test@example.com"
+    err := validateInput(email, []Validator{
+        func(value string) error {
+            if value == "" {
+                return fmt.Errorf("cannot be empty")
+            }
+            return nil
+        },
+        func(value string) error {
+            if !strings.Contains(value, "@") {
+                return fmt.Errorf("invalid format")
+            }
+            return nil
+        },
+    })
+}
+
+// 闭包
+func createCounter() func() int {
+    count := 0
+    return func() int {
+        count++
+        return count
+    }
+}
+
+// ====================
+
+// Dart 版本
+// 函数类型别名
+typedef Validator = String? Function(String);
+
+void validateInput(String input, List<Validator> validators) {
+  for (final validator in validators) {
+    final error = validator(input);
+    if (error != null) {
+      throw ValidationException(error);
+    }
+  }
+}
+
+// 使用
+void main() {
+  final email = 'test@example.com';
+  validateInput(email, [
+    (value) => value.isEmpty ? '不能为空' : null,
+    (value) => !value.contains('@') ? '格式错误' : null,
+    (value) => value.length > 100 ? '太长' : null,
+  ]);
+}
+
+// 闭包捕获变量
+Function createCounter() {
+  int count = 0;
+  return () => ++count;
+}
+
+final counter1 = createCounter();
+final counter2 = createCounter();
+
+print(counter1()); // 1
+print(counter1()); // 2
+print(counter2()); // 1 (独立的闭包)
+
+// 关键差异：
+// 1. Go: 函数类型语法 type Name func(...)，Dart: typedef Name = Function(...)
+// 2. Go: 闭包变量通过引用捕获，Dart 类似
+// 3. Go: 匿名函数使用 func 关键字，Dart 使用 =>
+// 4. Dart: 支持箭头函数语法，更简洁</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>集合操作对比</h3>
+                        <p>Dart 有丰富的集合操作符，Go 需要手动写循环</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 函数式集合处理</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - 手动循环
+func getActiveUsers(users []User) []User {
+    result := []User{}
+    for _, u := range users {
+        if u.IsActive && u.LastLogin != nil {
+            result = append(result, u)
+        }
+    }
+    return result
+}
+
+func groupUsersByDepartment(users []User) map[string][]User {
+    result := make(map[string][]User)
+    for _, u := range users {
+        if u.Department != "" {
+            result[u.Department] = append(result[u.Department], u)
+        }
+    }
+    return result
+}
+
+func calculateTotalRevenue(orders []Order) float64 {
+    total := 0.0
+    for _, o := range orders {
+        if o.Status == Completed {
+            for _, item := range o.Items {
+                total += item.Price
+            }
+        }
+    }
+    return total
+}
+
+// ====================
+
+// Dart 版本 - 函数式风格
+// 函数式管道
+List<User> getActiveUsers(List<User> users) {
+  return users
+    .where((u) => u.isActive)
+    .where((u) => u.lastLogin != null)
+    .toList();
+}
+
+// 复杂转换
+Map<String, List<User>> groupUsersByDepartment(List<User> users) {
+  return users
+    .where((u) => u.department != null)
+    .fold(<String, List<User>>{}, (map, user) {
+      final dept = user.department!;
+      map[dept] = [...?map[dept], user];
+      return map;
+    });
+}
+
+// 计算管道
+double calculateTotalRevenue(List<Order> orders) {
+  return orders
+    .where((o) => o.status == OrderStatus.completed)
+    .map((o) => o.items.fold(0.0, (sum, item) => sum + item.price))
+    .fold(0.0, (sum, total) => sum + total);
+}
+
+// 使用 cascade 和 spread
+List<int> processedNumbers = [1, 2, 3]
+  ..map((n) => n * 2)
+  ..where((n) => n > 3)
+  ..toList();
+
+// 关键差异：
+// 1. Go: 需要手动写循环，代码冗长
+// 2. Dart: 丰富的操作符（map, where, fold, reduce 等）
+// 3. Go: 更显式，性能可预测
+// 4. Dart: 更简洁，可读性好，但可能有性能开销
+// 5. Dart: 支持级联操作符 (..)，Go 没有
+// 6. Dart: 支持展开操作符 (...)</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Record 类型 vs 多返回值</h3>
+                        <p>Dart 3 的 Record 类型类似 Go 的多返回值</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 多返回值</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - 多返回值
+package main
+
+// 多返回值
+func getUserInfo() (string, int) {
+    return "John", 30
+}
+
+// 命名返回值
+func getStatus() (code int, message string) {
+    code = 200
+    message = "OK"
+    return  // 可以省略返回值
+}
+
+// 使用
+func main() {
+    name, age := getUserInfo()
+    fmt.Printf("%s is %d years old\n", name, age)
+    
+    code, msg := getStatus()
+    fmt.Printf("%d: %s\n", code, msg)
+}
+
+// ====================
+
+// Dart 版本 - Record 类型 (Dart 3)
+// Record 类型（类似元组）
+({String name, int age}) getUserInfo() {
+  return (name: 'John', age: 30);
+}
+
+// 解构
+final (:name, :age) = getUserInfo();
+print('$name is $age years old');
+
+// 位置记录
+(int, String) getStatus() {
+  return (200, 'OK');
+}
+
+final (code, message) = getStatus();
+
+// 模式匹配
+String describeStatus((int, String) status) {
+  return switch (status) {
+    (200, _) => '成功',
+    (400 || 404, _) => '客户端错误',
+    (500, _) => '服务器错误',
+    _ => '未知状态',
+  };
+}
+
+// 不可变集合
+final immutableList = List.unmodifiable([1, 2, 3]);
+final immutableMap = Map.unmodifiable({'key': 'value'});
+
+// 使用 record 实现多返回值
+({List<User> users, int total, bool hasMore}) fetchUsers({
+  required int page,
+  required int pageSize,
+}) async {
+  final users = await _repository.findPage(page, pageSize);
+  final total = await _repository.count();
+  return (
+    users: users,
+    total: total,
+    hasMore: (page * pageSize) < total,
+  );
+}
+
+// 关键差异：
+// 1. Go: 原生多返回值，用逗号分隔
+// 2. Dart: Record 类型（Dart 3+），更灵活
+// 3. Go: 命名返回值可以在函数内直接使用
+// 4. Dart: Record 支持命名字段和位置字段
+// 5. Dart: Record 可以用作 Map 的键（Go 不行）
+// 6. Go: 忽略返回值用 _，Dart 解构用 _</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Go 程序员迁移指南</h3>
+                        <ul class="feature-list">
+                            <li><strong>函数类型</strong>：Go 用 type Name func(...)，Dart 用 typedef Name = Function(...)</li>
+                            <li><strong>匿名函数</strong>：Go 用 func 关键字，Dart 用 => 更简洁</li>
+                            <li><strong>集合操作</strong>：Dart 有丰富的操作符，Go 需要手动循环</li>
+                            <li><strong>多返回值</strong>：Go 原生支持，Dart 用 Record 类型</li>
+                            <li><strong>级联操作符</strong>：Dart 的 .. 可以链式调用，Go 没有</li>
+                            <li><strong>不可变性</strong>：Dart 有 unmodifiable 集合，Go 用约定或第三方库</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="patterns" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">模式匹配</h2>
+                        <div class="section-badge">Go 没有的特性</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Go 的 switch vs Dart 的 switch 表达式</h3>
+                        <p>Dart 3 的模式匹配是 Go switch 的超集，功能强大得多</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: switch 对比</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - switch 语句（不是表达式）
+package main
+
+func describeValue(value interface{}) string {
+    switch v := value.(type) {
+    case nil:
+        return "空值"
+    case int:
+        if v > 0 {
+            return fmt.Sprintf("正整数: %d", v)
+        } else if v < 0 {
+            return fmt.Sprintf("负整数: %d", v)
+        }
+        return "零"
+    case string:
+        if v != "" {
+            return fmt.Sprintf("非空字符串: %s", v)
+        }
+        return "空字符串"
+    default:
+        return "其他类型"
+    }
+}
+
+// Go 的 switch 不能直接用于模式匹配对象
+func getPermission(user User) string {
+    switch user.Role {
+    case RoleAdmin:
+        return "完全访问"
+    case RoleUser:
+        if user.IsActive {
+            return "标准访问"
+        }
+        return "账户已禁用"
+    case RoleGuest:
+        return "只读访问"
+    }
+    return "无权限"
+}
+
+// ====================
+
+// Dart 版本 - switch 表达式（Dart 3）
+// 基础模式匹配 - 支持类型、值、逻辑组合
+String describeValue(Object? value) {
+  return switch (value) {
+    null => '空值',
+    int n when n > 0 => '正整数: $n',  // when 子句（Go 没有）
+    int n when n < 0 => '负整数: $n',
+    0 => '零',
+    String s when s.isNotEmpty => '非空字符串: $s',
+    String s => '空字符串',
+    List list when list.isEmpty => '空列表',
+    List list => '列表长度: ${list.length}',
+    _ => '其他类型',  // 默认分支（Go 用 default）
+  };
+}
+
+// 对象模式匹配 - Go 不支持
+enum Role { admin, user, guest }
+
+String getPermission(User user) {
+  return switch (user) {
+    User(role: Role.admin) => '完全访问',  // 解构对象（Go 不支持）
+    User(role: Role.user, isActive: true) => '标准访问',
+    User(role: Role.user, isActive: false) => '账户已禁用',
+    User(role: Role.guest) => '只读访问',
+    _ => '无权限',
+  };
+}
+
+// 列表模式匹配 - Go 不支持
+String analyzeList(List<int> numbers) {
+  return switch (numbers) {
+    [] => '空列表',
+    [single] => '单个元素: $single',
+    [first, second] => '两个元素: $first, $second',
+    [first, ...rest] => '首元素: $first, 其余: $rest',  // 展开操作符（Go 不支持）
+    _ => '多个元素',
+  };
+}
+
+// Map 模式匹配 - Go 不支持
+String getConfigValue(Map<String, dynamic> config) {
+  return switch (config) {
+    {'mode': 'production', 'port': int port} => '生产环境: 端口 $port',
+    {'mode': 'development'} => '开发环境',
+    {'mode': String mode} => '未知模式: $mode',
+    _ => '无效配置',
+  };
+}
+
+// 关键差异：
+// 1. Go: switch 是语句，不能返回值；Dart: switch 是表达式，返回值
+// 2. Go: 需要类型断言 (type switch)；Dart: 直接在模式中匹配类型
+// 3. Go: 需要手动提取字段；Dart: 解构对象自动提取
+// 4. Go: 没有 when 子句；Dart: 支持 when 进行额外条件判断
+// 5. Go: 不支持列表、Map 模式；Dart: 支持复杂数据结构模式匹配
+// 6. Go: case 不支持模式组合；Dart: 支持复杂的模式组合</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>If-case 和模式赋值</h3>
+                        <p>Dart 的 if-case 是 Go switch 的灵活替代品</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 条件模式匹配</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - 类型断言
+package main
+
+func processResponse(response interface{}) {
+    switch r := response.(type) {
+    case *Success:
+        handleSuccess(r.Data)
+    case *Error:
+        handleError(r.Code)
+    default:
+        handleUnknown()
+    }
+}
+
+func main() {
+    json := map[string]interface{}{
+        "name": "John",
+        "age":  30,
+    }
+    
+    // 需要类型断言
+    if name, ok := json["name"].(string); ok {
+        if age, ok := json["age"].(int); ok {
+            fmt.Printf("姓名: %s, 年龄: %d\n", name, age)
+        }
+    }
+}
+
+// ====================
+
+// Dart 版本 - if-case 语句
+void processResponse(Response response) {
+  if (response case Success(data: final data)) {  // if-case 语法
+    handleSuccess(data);
+  } else if (response case Error(code: final code)) {
+    handleError(code);
+  } else {
+    handleUnknown();
+  }
+}
+
+// 模式赋值
+void main() {
+  final json = {'name': 'John', 'age': 30};
+  
+  if (json case {'name': String name, 'age': int age}) {  // 解构 Map
+    print('姓名: $name, 年龄: $age');
+  }
+  
+  // switch 模式赋值
+  final status = switch (HttpStatus.fromCode(200)) {
+    HttpStatus.ok => '成功',
+    HttpStatus.notFound => '未找到',
+    _ => '其他状态',
+  };
+}
+
+// 保护子句 (guard clause) - Go 不支持
+String describeShape(Shape shape) {
+  return switch (shape) {
+    Circle(radius: var r) when r > 10 => '大圆 (半径: $r)',  // when 子句
+    Circle(radius: var r) => '小圆 (半径: $r)',
+    Rectangle(width: var w, height: var h) when w == h => '正方形 (边长: $w)',
+    Rectangle(width: var w, height: var h) => '矩形 (${w}x$h)',
+    _ => '未知形状',
+  };
+}
+
+// 关键差异：
+// 1. Go: 需要类型断言 (.(type))；Dart: 直接在 if-case 中匹配
+// 2. Go: 需要检查 ok 返回值；Dart: 模式匹配自动提取
+// 3. Go: 没有解构语法；Dart: 支持对象、列表、Map 解构
+// 4. Go: 需要手动类型转换；Dart: 自动类型推断
+// 5. Go: 没有 when 子句；Dart: when 可以添加额外条件
+// 6. Go: 代码冗长；Dart: 简洁清晰</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>模式匹配实战案例</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 复杂场景</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - 处理 API 响应
+package main
+
+type Response struct {
+    Status int
+    Body   interface{}
+}
+
+func handleAPIResponse(resp *Response) string {
+    switch resp.Status {
+    case 200:
+        if user, ok := resp.Body.(*User); ok {
+            return fmt.Sprintf("用户: %s", user.Name)
+        }
+        if users, ok := resp.Body.([]*User); ok {
+            return fmt.Sprintf("用户列表: %d 个", len(users))
+        }
+        return "成功"
+    case 404:
+        return "未找到"
+    case 500:
+        return "服务器错误"
+    default:
+        if resp.Status >= 400 && resp.Status < 500 {
+            return "客户端错误"
+        }
+        return "未知错误"
+    }
+}
+
+// ====================
+
+// Dart 版本 - 模式匹配
+class Response {
+  final int status;
+  final dynamic body;
+}
+
+// 类型定义
+class User {
+  final String name;
+  User(this.name);
+}
+
+// 响应类型
+class Success {
+  final User user;
+  Success(this.user);
+}
+
+class UserList {
+  final List<User> users;
+  UserList(this.users);
+}
+
+// 模式匹配处理
+String handleAPIResponse(Response resp) {
+  return switch (resp) {
+    Response(status: 200, body: User(name: var name)) => 
+      '用户: $name',
+    Response(status: 200, body: UserList(users: var users)) => 
+      '用户列表: ${users.length} 个',
+    Response(status: 200) => '成功',
+    Response(status: 404) => '未找到',
+    Response(status: 500) => '服务器错误',
+    Response(status: var s) when s >= 400 && s < 500 => 
+      '客户端错误',
+    Response(status: var s) => '未知错误: $s',
+  };
+}
+
+// 关键差异：
+// 1. Go: 需要 switch + if + 类型断言的组合
+// 2. Dart: 一个 switch 表达式搞定
+// 3. Go: 代码冗长，容易出错
+// 4. Dart: 简洁，类型安全，易读
+// 5. Go: 处理嵌套数据结构困难
+// 6. Dart: 模式匹配可以处理任意深度的嵌套结构</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Go 程序员为什么需要模式匹配？</h3>
+                        <ul class="feature-list">
+                            <li><strong>替代类型断言</strong>：Go 的 type switch 冗长，Dart 模式匹配简洁</li>
+                            <li><strong>数据解构</strong>：Go 需要手动提取字段，Dart 自动解构</li>
+                            <li><strong>逻辑组合</strong>：Go 需要多个 if，Dart 的 when 子句更清晰</li>
+                            <li><strong>复杂结构匹配</strong>：Go 难以处理嵌套数据，Dart 轻松搞定</li>
+                            <li><strong>表达式 vs 语句</strong>：Dart switch 返回值，可以直接赋值</li>
+                            <li><strong>类型安全</strong>：模式匹配保证类型正确性</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="comparison" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">语言对比</h2>
+                        <div class="section-badge">Dart vs Go 深度对比</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Dart vs Go - 核心差异总览</h3>
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>维度</th>
+                                        <th>Dart</th>
+                                        <th>Go</th>
+                                        <th>胜出者</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>并发模型</td>
+                                        <td>Event Loop + Isolate</td>
+                                        <td class="highlight">Goroutine + Channel</td>
+                                        <td>Go (简单高效)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>错误处理</td>
+                                        <td>Exception + try/catch</td>
+                                        <td class="highlight">error 返回值</td>
+                                        <td>Go (显式可控)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>类型系统</td>
+                                        <td class="highlight">类 + 继承 + Mixin</td>
+                                        <td>结构体 + 组合</td>
+                                        <td>Dart (更灵活)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>空安全</td>
+                                        <td class="highlight">编译时 Sound Null Safety</td>
+                                        <td>运行时 nil 检查</td>
+                                        <td>Dart (更安全)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>编译速度</td>
+                                        <td>快 (JIT 模式)</td>
+                                        <td class="highlight">极快 (AOT)</td>
+                                        <td>Go (编译之王)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>模式匹配</td>
+                                        <td class="highlight">switch 表达式 (Dart 3)</td>
+                                        <td>switch 语句</td>
+                                        <td>Dart (更强大)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>泛型</td>
+                                        <td class="highlight">完整支持 + 约束</td>
+                                        <td>支持 (Go 1.18+)</td>
+                                        <td>Dart (更成熟)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>扩展方法</td>
+                                        <td class="highlight">extension 原生支持</td>
+                                        <td>无（需辅助函数）</td>
+                                        <td>Dart (更优雅)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>学习曲线</td>
+                                        <td>中等（需要适应 OOP）</td>
+                                        <td class="highlight">简单（语法简洁）</td>
+                                        <td>Go (更易上手)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>生态</td>
+                                        <td class="highlight">Flutter/Dart 为主</td>
+                                        <td>云原生/微服务</td>
+                                        <td>Go (更广泛)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>错误处理对比</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 错误处理</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - error 返回值
+package main
+
+func fetchUser(id string) (*User, error) {
+    // 查询数据库
+    user, err := db.QueryUser(id)
+    if err != nil {
+        return nil, fmt.Errorf("query failed: %w", err)
+    }
+    if user == nil {
+        return nil, fmt.Errorf("user not found: %s", id)
+    }
+    return user, nil
+}
+
+func processUser(id string) error {
+    user, err := fetchUser(id)
+    if err != nil {
+        return err  // 向上传递错误
+    }
+    
+    // 处理用户
+    if err := updateUser(user); err != nil {
+        return err
+    }
+    
+    return nil
+}
+
+// ====================
+
+// Dart 版本 - 异常处理
+Future<User> fetchUser(String id) async {
+  try {
+    final data = await db.queryUser(id);
+    if (data == null) {
+      throw NotFoundException('User not found: $id');
+    }
+    return data;
+  } on DatabaseException catch (e) {
+    throw Exception('Query failed: $e');
+  }
+}
+
+Future<void> processUser(String id) async {
+  try {
+    final user = await fetchUser(id);
+    await updateUser(user);
+  } on NotFoundException catch (e) {
+    print('User not found: $e');
+    rethrow;  // 向上传递异常
+  } catch (e) {
+    print('Unexpected error: $e');
+    rethrow;
+  }
+}
+
+// 关键差异：
+// 1. Go: 显式错误处理，不会遗漏
+// 2. Dart: 异常机制，需要 try/catch
+// 3. Go: 错误是值，可以传递和包装
+// 4. Dart: 异常可以携带更多上下文
+// 5. Go: 错误处理代码冗长但清晰
+// 6. Dart: 异常处理简洁但可能遗漏</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>并发性能对比</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 并发场景</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - 高并发场景
+package main
+
+func processItems(items []Item) []Result {
+    results := make(chan Result, len(items))
+    
+    // 启动多个 goroutine 并行处理
+    for _, item := range items {
+        go func(i Item) {
+            result := processItem(i)
+            results <- result
+        }(item)
+    }
+    
+    // 收集结果
+    finalResults := make([]Result, 0, len(items))
+    for range items {
+        result := <-results
+        finalResults = append(finalResults, result)
+    }
+    
+    return finalResults
+}
+
+// 使用 worker pool 模式
+func workerPool(items <-chan Item, results chan<- Result) {
+    for item := range items {
+        results <- processItem(item)
+    }
+}
+
+// ====================
+
+// Dart 版本 - Event Loop 模型
+Future<List<Result>> processItems(List<Item> items) async {
+  // 并发处理（但不是真正的并行）
+  final results = await Future.wait(
+    items.map((item) => processItem(item))
+  );
+  return results;
+}
+
+// CPU 密集型任务需要 Isolate
+Future<List<Result>> processItemsParallel(List<Item> items) async {
+  // 使用 Isolate 进行真正的并行计算
+  final results = await Future.wait(
+    items.map((item) => 
+      Isolate.run(() => heavyComputation(item))
+    )
+  );
+  return results;
+}
+
+// 关键差异：
+// 1. Go: goroutine 轻量级，可以轻松创建百万级
+// 2. Dart: async/await 只是让出执行权，仍是单线程
+// 3. Go: 真正的并行计算，充分利用多核
+// 4. Dart: Event Loop 模型，适合 I/O 密集型
+// 5. Go: worker pool 模式自然，Dart 需要额外设计
+// 6. Dart: CPU 密集型需要 Isolate，成本更高</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>测试对比</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Go vs Dart: 测试</span>
+                            </div>
+                            <pre><code class="language-dart">// Go 版本 - testing 包
+package user_test
+
+import (
+    "testing"
+    "github.com/stretchr/testify/assert"
+)
+
+func TestGetUser(t *testing.T) {
+    tests := []struct {
+        name    string
+        id      string
+        want    *User
+        wantErr bool
+    }{
+        {
+            name:    "valid user",
+            id:      "123",
+            want:    &User{ID: "123", Name: "John"},
+            wantErr: false,
+        },
+        {
+            name:    "not found",
+            id:      "999",
+            want:    nil,
+            wantErr: true,
+        },
+    }
+    
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            got, err := GetUser(tt.id)
+            if (err != nil) != tt.wantErr {
+                t.Errorf("GetUser() error = %v, wantErr %v", err, tt.wantErr)
+                return
+            }
+            assert.Equal(t, tt.want, got)
+        })
+    }
+}
+
+// ====================
+
+// Dart 版本 - test 包
+import 'package:test/test.dart';
+
+void main() {
+  group('GetUser', () {
+    test('valid user', () async {
+      final user = await getUser('123');
+      expect(user, isNotNull);
+      expect(user.id, equals('123'));
+      expect(user.name, equals('John'));
+    });
+    
+    test('not found', () async {
+      expect(
+        () => getUser('999'),
+        throwsA(isA<NotFoundException>()),
+      );
+    });
+  });
+}
+
+// 关键差异：
+// 1. Go: testing 包简洁，但功能有限
+// 2. Dart: test 包丰富，支持 matchers、mock 等
+// 3. Go: 表格驱动测试（table-driven）很流行
+// 4. Dart: group/test 结构更清晰
+// 5. Go: 需要第三方库进行断言
+// 6. Dart: 内置丰富的断言和匹配器</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>何时选择 Dart？</h3>
+                        <ul class="feature-list">
+                            <li><strong>Flutter 开发</strong>：Dart 是 Flutter 的唯一语言，不二选择</li>
+                            <li><strong>跨平台应用</strong>：移动端、Web、桌面端统一开发</li>
+                            <li><strong>热重载开发</strong>：需要快速迭代、实时反馈的开发场景</li>
+                            <li><strong>前端后端统一</strong>：使用 Dart 全栈开发（如 Serverpod）</li>
+                            <li><strong>需要强类型 + 空安全</strong>：比 Go 更严格的类型检查</li>
+                            <li><strong>函数式编程</strong>：需要丰富的函数式特性</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>何时选择 Go？</h3>
+                        <ul class="feature-list">
+                            <li><strong>云原生/微服务</strong>：Go 在云原生领域是事实标准</li>
+                            <li><strong>高并发服务</strong>：goroutine + channel 模型简单高效</li>
+                            <li><strong>网络编程</strong>：标准库强大，适合构建网络服务</li>
+                            <li><strong>命令行工具</strong>：编译成单一二进制文件，部署简单</li>
+                            <li><strong>性能敏感</strong>：编译速度快，运行时性能优秀</li>
+                            <li><strong>团队协作</strong>：语法简单，学习曲线平缓</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Go 程序员学习 Dart 的建议</h3>
+                        <ul class="feature-list">
+                            <li><strong>最大的转变</strong>：从结构体+组合转向类+继承</li>
+                            <li><strong>并发思维</strong>：理解 Event Loop 模型，避免阻塞</li>
+                            <li><strong>错误处理</strong>：适应异常而非 error 返回值</li>
+                            <li><strong>空安全</strong>：享受编译时空安全，不用再担心 nil panic</li>
+                            <li><strong>模式匹配</strong>：充分利用 Dart 3 的模式匹配特性</li>
+                            <li><strong>扩展方法</strong>：用 extension 增强现有类型</li>
+                            <li><strong>异步编程</strong>：async/await 比 goroutine 更简单，但不真正并行</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <div class="floating-toc" id="floatingToc">
+        <button class="toc-toggle" id="tocToggle">
+            <span>📖</span>
+        </button>
+        <div class="toc-content" id="tocContent">
+            <h4>快速导航</h4>
+            <ul class="toc-list" id="tocList"></ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
