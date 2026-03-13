@@ -1,5 +1,3 @@
-// Dart 学习网站 - 交互式 JavaScript
-
 // 状态管理
 const state = {
   currentSection: 'overview',
@@ -15,9 +13,6 @@ const elements = {
   themeToggle: document.getElementById('themeToggle'),
   progressFill: document.getElementById('progressFill'),
   progressText: document.getElementById('progressText'),
-  tocToggle: document.getElementById('tocToggle'),
-  tocContent: document.getElementById('tocContent'),
-  tocList: document.getElementById('tocList'),
   mobileMenuToggle: document.getElementById('mobileMenuToggle')
 };
 
@@ -26,9 +21,7 @@ function init() {
   loadTheme();
   loadProgress();
   setupEventListeners();
-  generateToc();
   updateNavigation();
-  highlightCurrentSection();
 }
 
 // 事件监听器设置
@@ -41,22 +34,13 @@ function setupEventListeners() {
   // 主题切换
   elements.themeToggle.addEventListener('click', toggleTheme);
 
-  // TOG 切换
-  elements.tocToggle.addEventListener('click', toggleToc);
-
   // 移动端菜单切换
   if (elements.mobileMenuToggle) {
     elements.mobileMenuToggle.addEventListener('click', toggleMobileMenu);
   }
 
-  // 滚动监听
-  window.addEventListener('scroll', handleScroll);
-
   // 键盘快捷键
   document.addEventListener('keydown', handleKeyboard);
-
-  // 窗口大小改变
-  window.addEventListener('resize', handleResize);
 
   // 复制按钮
   document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -157,35 +141,6 @@ function saveProgress() {
   localStorage.setItem('dart-tutorial-progress', state.currentSection);
 }
 
-// 目录生成
-function generateToc() {
-  const tocItems = state.sections.map(sectionId => {
-    const section = document.getElementById(sectionId);
-    const title = section.querySelector('.section-title').textContent;
-    return `
-      <li>
-        <a href="#${sectionId}" data-section="${sectionId}">${title}</a>
-      </li>
-    `;
-  }).join('');
-  
-  elements.tocList.innerHTML = tocItems;
-  
-  // TOC 链接点击
-  elements.tocList.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const sectionId = link.getAttribute('data-section');
-      navigateToSection(sectionId);
-      toggleToc();
-    });
-  });
-}
-
-function toggleToc() {
-  elements.tocContent.classList.toggle('show');
-}
-
 // 移动端菜单切换
 function toggleMobileMenu() {
   const sidebar = document.querySelector('.sidebar');
@@ -196,47 +151,14 @@ function toggleMobileMenu() {
   elements.mobileMenuToggle.querySelector('.menu-icon').textContent = isOpen ? '✕' : '☰';
 }
 
-// 滚动处理
-function handleScroll() {
-  const scrollTop = window.pageYOffset;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  
-  // 高亮当前可见的部分
-  highlightCurrentSection();
-}
-
-function highlightCurrentSection() {
-  const scrollPosition = window.scrollY + 100;
-  
-  elements.sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-    
-    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-      state.currentSection = section.id;
-      updateNavigation();
-      updateToc();
-    }
-  });
-}
-
-function updateToc() {
-  elements.tocList.querySelectorAll('a').forEach(link => {
-    const sectionId = link.getAttribute('data-section');
-    if (sectionId === state.currentSection) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
-}
-
 // 键盘快捷键
 function handleKeyboard(e) {
-  // Esc 关闭 TOC
+  // Esc 关闭移动端菜单
   if (e.key === 'Escape') {
-    elements.tocContent.classList.remove('show');
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar.classList.contains('open')) {
+      toggleMobileMenu();
+    }
   }
   
   // 左右箭头导航
@@ -260,22 +182,6 @@ function handleKeyboard(e) {
   }
 }
 
-// 窗口大小改变
-function handleResize() {
-  // 移动端处理
-  if (window.innerWidth <= 1024) {
-    elements.tocContent.classList.remove('show');
-  } else {
-    // 窗口变大时关闭移动端菜单
-    const sidebar = document.querySelector('.sidebar');
-    sidebar.classList.remove('open');
-    if (elements.mobileMenuToggle) {
-      elements.mobileMenuToggle.setAttribute('aria-expanded', 'false');
-      elements.mobileMenuToggle.querySelector('.menu-icon').textContent = '☰';
-    }
-  }
-}
-
 // 复制代码
 function handleCopyCode(e) {
   const codeBlock = e.target.closest('.code-block');
@@ -289,7 +195,7 @@ function handleCopyCode(e) {
     
     setTimeout(() => {
       btn.textContent = originalText;
-      btn.style.background = 'var(--primary-color)';
+      btn.style.background = '';
     }, 2000);
   }).catch(err => {
     console.error('复制失败:', err);
@@ -297,7 +203,7 @@ function handleCopyCode(e) {
   });
 }
 
-// 复制功能（全局）
+// 全局复制函数（HTML内联调用）
 function copyCode(btn) {
   const codeBlock = btn.closest('.code-block');
   const code = codeBlock.querySelector('code').textContent;
@@ -309,7 +215,7 @@ function copyCode(btn) {
     
     setTimeout(() => {
       btn.textContent = originalText;
-      btn.style.background = 'var(--primary-color)';
+      btn.style.background = '';
     }, 2000);
   }).catch(err => {
     console.error('复制失败:', err);
@@ -317,96 +223,21 @@ function copyCode(btn) {
   });
 }
 
-// 工具函数
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-function throttle(func, limit) {
-  let inThrottle;
-  return function(...args) {
-    if (!inThrottle) {
-      func.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  };
-}
-
-// 页面可见性变化
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') {
-    highlightCurrentSection();
-  }
-});
-
-// 点击外部关闭 TOC
+// 点击外部关闭移动端菜单
 document.addEventListener('click', (e) => {
-  if (!elements.tocContent.contains(e.target) && !elements.tocToggle.contains(e.target)) {
-    elements.tocContent.classList.remove('show');
-  }
-});
-
-// 平滑滚动到锚点
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    if (href.length > 1) {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const offsetTop = target.offsetTop - 20;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
-      }
-    }
-  });
-});
-
-// 添加动画观察器
-function setupIntersectionObserver() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
+  const sidebar = document.querySelector('.sidebar');
+  const toggle = document.getElementById('mobileMenuToggle');
   
-  // 观察所有卡片
-  document.querySelectorAll('.card').forEach(card => {
-    observer.observe(card);
-  });
-}
-
-// 性能优化：使用 requestAnimationFrame
-let ticking = false;
-function optimizedScroll() {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      handleScroll();
-      ticking = false;
-    });
-    ticking = true;
+  if (sidebar.classList.contains('open') && 
+      !sidebar.contains(e.target) && 
+      !toggle.contains(e.target)) {
+    toggleMobileMenu();
   }
-}
+});
 
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
   init();
-  setupIntersectionObserver();
   
   // 处理 URL hash
   const hash = window.location.hash.slice(1);
@@ -417,5 +248,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 导出函数供全局使用
 window.copyCode = copyCode;
-window.navigateToSection = navigateToSection;
-window.toggleTheme = toggleTheme;
