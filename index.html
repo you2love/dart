@@ -167,6 +167,7 @@
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本
 package main
@@ -251,6 +252,7 @@ void main() {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 类型推断</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本
 package main
@@ -301,6 +303,7 @@ void main() {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 泛型约束</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本
 package main
@@ -384,6 +387,7 @@ final sum = Sum<int>([1, 2, 3]); // 6</code></pre>
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 扩展方法</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - Go 没有扩展方法！
 // 只能创建辅助函数
@@ -514,6 +518,7 @@ print(['a', 'b'].firstWhereOrNull((s) => s == 'b')); // 'b'</code></pre>
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 并发执行</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - Goroutine
 package main
@@ -619,6 +624,7 @@ Future<void> safeFetch() async {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 数据流处理</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - Channel
 package main
@@ -726,6 +732,7 @@ void advancedStreamProcessing() {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: CPU 密集型任务</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - Goroutine + Channel
 package main
@@ -839,6 +846,7 @@ void main() async {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 数据结构定义</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - 结构体
 package main
@@ -975,6 +983,7 @@ class User {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 接口实现</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - 隐式接口
 package main
@@ -1075,6 +1084,7 @@ void useRepository(Repository<User> repo) {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 代码复用</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - 结构体嵌入
 package main
@@ -1173,6 +1183,7 @@ print(user.isValid);  // 来自 Validatable mixin
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 单例实现</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - 包级变量 + sync.Once
 package main
@@ -1304,6 +1315,7 @@ await db.connect();
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 空值处理</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - nil 检查
 package main
@@ -1421,6 +1433,7 @@ class Config {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 最佳实践</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - 防御性编程
 package main
@@ -1525,6 +1538,7 @@ String getStatus(User? user) {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 高阶函数</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本
 package main
@@ -1623,6 +1637,7 @@ print(counter2()); // 1 (独立的闭包)
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 函数式集合处理</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - 手动循环
 func getActiveUsers(users []User) []User {
@@ -1709,6 +1724,7 @@ List<int> processedNumbers = [1, 2, 3]
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 多返回值</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - 多返回值
 package main
@@ -1816,6 +1832,7 @@ final immutableMap = Map.unmodifiable({'key': 'value'});
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: switch 对比</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - switch 语句（不是表达式）
 package main
@@ -1925,6 +1942,7 @@ String getConfigValue(Map<String, dynamic> config) {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 条件模式匹配</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - 类型断言
 package main
@@ -2009,6 +2027,7 @@ String describeShape(Shape shape) {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 复杂场景</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - 处理 API 响应
 package main
@@ -2193,6 +2212,7 @@ String handleAPIResponse(Response resp) {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 错误处理</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - error 返回值
 package main
@@ -2266,6 +2286,7 @@ Future<void> processUser(String id) async {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 并发场景</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - 高并发场景
 package main
@@ -2335,6 +2356,7 @@ Future<List<Result>> processItemsParallel(List<Item> items) async {
                         <div class="code-block">
                             <div class="code-header">
                                 <span>Go vs Dart: 测试</span>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
                             </div>
                             <pre><code class="language-dart">// Go 版本 - testing 包
 package user_test
