@@ -22,6 +22,7 @@ function init() {
   loadProgress();
   setupEventListeners();
   updateNavigation();
+  setupCodeBlocks();
 }
 
 // 事件监听器设置
@@ -46,6 +47,45 @@ function setupEventListeners() {
   document.querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', handleCopyCode);
   });
+}
+
+// 设置代码块折叠功能
+function setupCodeBlocks() {
+  document.querySelectorAll('.code-block').forEach(codeBlock => {
+    const header = codeBlock.querySelector('.code-header');
+    if (!header) return;
+
+    const actions = header.querySelector('.code-header-actions') || document.createElement('div');
+    actions.className = 'code-header-actions';
+
+    // 创建折叠按钮
+    const collapseBtn = document.createElement('button');
+    collapseBtn.className = 'collapse-btn';
+    collapseBtn.innerHTML = '<span class="arrow">▼</span> 收起';
+    collapseBtn.onclick = () => toggleCodeBlock(codeBlock, collapseBtn);
+
+    // 如果还没有 actions 容器，先创建它
+    if (!header.querySelector('.code-header-actions')) {
+      header.appendChild(actions);
+    }
+
+    // 添加折叠按钮到 actions 容器
+    actions.insertBefore(collapseBtn, actions.firstChild);
+
+    // 添加展开提示
+    const expandHint = document.createElement('div');
+    expandHint.className = 'expand-hint';
+    expandHint.textContent = '点击展开代码';
+    expandHint.onclick = () => toggleCodeBlock(codeBlock, collapseBtn);
+    codeBlock.appendChild(expandHint);
+  });
+}
+
+// 切换代码块折叠状态
+function toggleCodeBlock(codeBlock, collapseBtn) {
+  const isCollapsed = codeBlock.classList.toggle('collapsed');
+  collapseBtn.classList.toggle('collapsed', isCollapsed);
+  collapseBtn.innerHTML = isCollapsed ? '<span class="arrow">▼</span> 展开' : '<span class="arrow">▼</span> 收起';
 }
 
 // 导航处理

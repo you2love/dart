@@ -518,6 +518,13 @@ body::before {
   padding: 0.75rem 1rem;
   background: rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid var(--border-color);
+  gap: 0.5rem;
+}
+
+.code-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .code-header span {
@@ -526,6 +533,43 @@ body::before {
   font-weight: 600;
   font-family: var(--font-mono);
   letter-spacing: 0.0125em;
+}
+
+.code-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.collapse-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-primary);
+  letter-spacing: 0.0125em;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.collapse-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+.collapse-btn .arrow {
+  transition: transform var(--transition-fast);
+}
+
+.collapse-btn.collapsed .arrow {
+  transform: rotate(-90deg);
 }
 
 .copy-btn {
@@ -556,6 +600,36 @@ body::before {
   padding: 1.5rem;
   overflow-x: auto;
   margin: 0;
+  transition: max-height var(--transition-normal), opacity var(--transition-normal), padding var(--transition-normal);
+  max-height: 500px;
+}
+
+.code-block.collapsed pre {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.code-block .expand-hint {
+  text-align: center;
+  padding: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-top: 1px solid var(--border-color);
+  display: none;
+}
+
+.code-block.collapsed .expand-hint {
+  display: block;
+}
+
+.code-block .expand-hint:hover {
+  color: var(--primary-color);
+  background: rgba(102, 126, 234, 0.05);
 }
 
 .code-block code {
