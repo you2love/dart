@@ -1,24 +1,24 @@
 :root {
-  --primary-color: #0066CC;
-  --primary-dark: #004C99;
-  --primary-light: #3385FF;
-  --accent-color: #0066CC;
-  --success-color: #28A745;
-  --warning-color: #FFC107;
-  --error-color: #DC3545;
+  --primary-color: #6366F1;
+  --primary-dark: #4F46E5;
+  --primary-light: #818CF8;
+  --accent-color: #8B5CF6;
+  --success-color: #10B981;
+  --warning-color: #F59E0B;
+  --error-color: #EF4444;
 
   --bg-primary: #FFFFFF;
-  --bg-secondary: #F8F9FA;
+  --bg-secondary: #F9FAFB;
   --bg-card: #FFFFFF;
-  --bg-code: #2D2D2D;
+  --bg-code: #1F2937;
 
-  --text-primary: #212529;
-  --text-secondary: #495057;
-  --text-muted: #6C757D;
-  --text-light: #F8F9FA;
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+  --text-light: #F9FAFB;
 
-  --border-color: #DEE2E6;
-  --border-hover: #ADB5BD;
+  --border-color: #E5E7EB;
+  --border-hover: #D1D5DB;
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
@@ -39,18 +39,18 @@
 }
 
 [data-theme="dark"] {
-  --bg-primary: #1E1E1E;
-  --bg-secondary: #2D2D2D;
-  --bg-card: #252526;
-  --bg-code: #1E1E1E;
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-card: #1E293B;
+  --bg-code: #0F172A;
 
-  --text-primary: #E0E0E0;
-  --text-secondary: #B0B0B0;
-  --text-muted: #8A8A8A;
-  --text-light: #F5F5F5;
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-light: #F8FAFC;
 
-  --border-color: #3E3E3E;
-  --border-hover: #5E5E5E;
+  --border-color: #334155;
+  --border-hover: #475569;
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   --shadow-md: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
@@ -65,7 +65,7 @@
 }
 
 html {
-  font-size: 14px;
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
@@ -85,7 +85,7 @@ body {
 
 .sidebar {
   width: 240px;
-  background: #F8F9FA;
+  background: #F9FAFB;
   border-right: 1px solid var(--border-color);
   position: fixed;
   height: 100vh;
@@ -99,19 +99,19 @@ body {
 .sidebar-header {
   padding: 1.25rem 1rem;
   border-bottom: 1px solid var(--border-color);
-  background: #0066CC;
+  background: #6366F1;
   color: white;
 }
 
 .sidebar-header h1 {
-  font-size: 1.3125rem;
+  font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
   letter-spacing: -0.0125em;
 }
 
 .subtitle {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   opacity: 0.9;
   font-weight: 400;
   letter-spacing: 0.00625em;
@@ -134,27 +134,27 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5625rem 1.125rem;
+  padding: 0.625rem 1.125rem;
   color: #495057;
   text-decoration: none;
   transition: all var(--transition-fast);
   border-left: 3px solid transparent;
   font-weight: 400;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.5;
   letter-spacing: 0.00625em;
 }
 
 .nav-link:hover {
-  background: #E9ECEF;
-  color: #0066CC;
-  border-left-color: #0066CC;
+  background: #F3F4F6;
+  color: #6366F1;
+  border-left-color: #6366F1;
 }
 
 .nav-link.active {
-  background: #0066CC;
+  background: #6366F1;
   color: white;
-  border-left-color: #0066CC;
+  border-left-color: #6366F1;
   font-weight: 700;
 }
 
@@ -167,12 +167,12 @@ body {
 .sidebar-footer {
   padding: 1rem;
   border-top: 1px solid var(--border-color);
-  background: #F8F9FA;
+  background: #F9FAFB;
 }
 
 .progress-bar {
   height: 4px;
-  background: #E9ECEF;
+  background: #E5E7EB;
   border-radius: var(--radius-sm);
   overflow: hidden;
   margin-bottom: 0.5rem;
@@ -180,14 +180,14 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: #0066CC;
+  background: #6366F1;
   border-radius: var(--radius-sm);
   transition: width var(--transition-normal);
   width: 0%;
 }
 
 .progress-text {
-  font-size: 0.71875rem;
+  font-size: 0.8125rem;
   color: #6C757D;
   font-weight: 600;
   letter-spacing: 0.00625em;
@@ -221,7 +221,7 @@ body {
 }
 
 .mobile-menu-toggle:hover {
-  background: #0052A3;
+  background: #4F46E5;
   transform: scale(1.05);
 }
 
@@ -273,17 +273,17 @@ body {
 }
 
 .section-title {
-  font-size: 1.875rem;
+  font-size: 2.125rem;
   font-weight: 700;
   color: #212529;
   letter-spacing: -0.00625em;
 }
 
 .section-badge {
-  padding: 0.21875rem 0.5625rem;
-  background: #0066CC;
+  padding: 0.3125rem 0.625rem;
+  background: #6366F1;
   color: white;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   border-radius: var(--radius-sm);
   text-transform: uppercase;
@@ -305,10 +305,10 @@ body {
 }
 
 .card h3 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #212529;
-  margin-bottom: 0.8125rem;
+  margin-bottom: 0.875rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -318,8 +318,8 @@ body {
 .card h3::before {
   content: '';
   width: 3px;
-  height: 1.1875rem;
-  background: #0066CC;
+  height: 1.25rem;
+  background: #6366F1;
   border-radius: var(--radius-sm);
 }
 
@@ -327,7 +327,7 @@ body {
   color: #495057;
   margin-bottom: 0.875rem;
   line-height: 1.75;
-  font-size: 0.875rem;
+  font-size: 1rem;
   letter-spacing: 0.003125em;
 }
 
@@ -340,16 +340,16 @@ body {
 
 .feature-item {
   padding: 1.125rem;
-  background: #F8F9FA;
+  background: #F9FAFB;
   border-radius: var(--radius-md);
   text-align: center;
   transition: all var(--transition-fast);
-  border: 1px solid #E9ECEF;
+  border: 1px solid #E5E7EB;
 }
 
 .feature-item:hover {
-  border-color: #0066CC;
-  background: #F0F4F8;
+  border-color: #6366F1;
+  background: #EEF2FF;
 }
 
 .feature-icon {
@@ -358,7 +358,7 @@ body {
 }
 
 .feature-item h4 {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 700;
   color: #212529;
   margin-bottom: 0.5rem;
@@ -366,7 +366,7 @@ body {
 }
 
 .feature-item p {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: #495057;
   margin: 0;
   line-height: 1.6;
@@ -393,7 +393,7 @@ body {
 
 .code-header span {
   color: #D4D4D4;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   font-family: var(--font-mono);
   letter-spacing: 0;
@@ -403,9 +403,9 @@ body {
   background: #4A4A4A;
   color: #D4D4D4;
   border: 1px solid #5E5E5E;
-  padding: 0.21875rem 0.5625rem;
+  padding: 0.3125rem 0.625rem;
   border-radius: var(--radius-sm);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -430,7 +430,7 @@ body {
 
 .code-block code {
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.7;
   color: #E0E0E0;
   letter-spacing: 0;
@@ -444,13 +444,13 @@ body {
 .comparison-table table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   border: 1px solid var(--border-color);
 }
 
 .comparison-table th,
 .comparison-table td {
-  padding: 0.5625rem 0.8125rem;
+  padding: 0.625rem 0.875rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
@@ -464,7 +464,7 @@ body {
 }
 
 .comparison-table th {
-  background: #F8F9FA;
+  background: #F9FAFB;
   font-weight: 700;
   color: #212529;
   position: sticky;
@@ -473,12 +473,12 @@ body {
 }
 
 .comparison-table tr:hover td {
-  background: #F0F4F8;
+  background: #F3F4F6;
 }
 
 .comparison-table .highlight {
-  background: #E6F4EA;
-  color: #28A745;
+  background: #EEF2FF;
+  color: #6366F1;
   font-weight: 700;
 }
 
@@ -493,7 +493,7 @@ body {
   position: relative;
   color: #495057;
   line-height: 1.75;
-  font-size: 0.875rem;
+  font-size: 1rem;
   letter-spacing: 0.003125em;
   font-weight: 400;
 }
@@ -518,7 +518,7 @@ body {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background: #0066CC;
+  background: #6366F1;
   border: none;
   cursor: pointer;
   display: flex;
@@ -531,7 +531,7 @@ body {
 }
 
 .theme-toggle:hover {
-  background: #0052A3;
+  background: #4F46E5;
   transform: scale(1.05);
 }
 
@@ -563,7 +563,7 @@ body {
   }
 
   .section-title {
-    font-size: 1.625rem;
+    font-size: 1.875rem;
   }
 
   .feature-grid {
@@ -578,7 +578,7 @@ body {
 
   .code-block pre {
     padding: 1rem;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
   }
 
   .theme-toggle {
@@ -587,7 +587,7 @@ body {
   }
 
   .comparison-table {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
   }
 
   .comparison-table th,
@@ -596,7 +596,7 @@ body {
   }
 
   .section-title {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 }
 
@@ -606,7 +606,7 @@ body {
   }
 
   .section-title {
-    font-size: 1.3125rem;
+    font-size: 1.5rem;
   }
 
   .section-header {
