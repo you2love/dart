@@ -87,7 +87,7 @@ body {
   transition: background var(--transition-normal), color var(--transition-normal);
 }
 
-/* 动态背景 */
+/* 简洁背景 */
 body::before {
   content: '';
   position: fixed;
@@ -95,17 +95,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(245, 87, 108, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(0, 242, 254, 0.1) 0%, transparent 50%);
+  background: #f8f9fa;
   z-index: -1;
-  animation: gradientShift 15s ease infinite;
-}
-
-@keyframes gradientShift {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  50% { transform: scale(1.1) rotate(5deg); }
 }
 
 .container {
