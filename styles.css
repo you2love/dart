@@ -18,7 +18,7 @@
   --bg-primary: #f8f9fa;
   --bg-secondary: #ffffff;
   --bg-card: #ffffff;
-  --bg-code: #1e1e1e;
+  --bg-code: #f5f5f5;
 
   --text-primary: #1a1a2e;
   --text-secondary: #4a4a4a;
@@ -29,11 +29,11 @@
   --border-hover: #c0c0c0;
 
   --glass-bg: rgba(255, 255, 255, 0.95);
-  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-border: rgba(100, 100, 100, 0.1);
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 8px rgba(100, 100, 100, 0.2);
+  --shadow-md: 0 4px 16px rgba(100, 100, 100, 0.2);
+  --shadow-lg: 0 8px 32px rgba(100, 100, 100, 0.2);
   --shadow-xl: 0 16px 64px rgba(102, 126, 234, 0.3);
 
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -49,22 +49,22 @@
   --font-mono: 'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
 }
 
-/* 暗色主题 */
+/* 暗色主题 - 改为浅色 */
 [data-theme="dark"] {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #141414;
-  --bg-card: #1a1a1a;
-  --bg-code: #0d0d0d;
+  --bg-primary: #f0f0f0;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-code: #f5f5f5;
 
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #707070;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a4a;
+  --text-muted: #7a7a7a;
 
-  --border-color: #2a2a2a;
-  --border-hover: #4a4a4a;
+  --border-color: #ccc;
+  --border-hover: #aaa;
 
-  --glass-bg: rgba(26, 26, 26, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -227,7 +227,7 @@ body::before {
   border-radius: var(--radius-sm);
   overflow: hidden;
   margin-bottom: 0.75rem;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 2px 4px rgba(100, 100, 100, 0.1);
 }
 
 .progress-fill {
@@ -630,7 +630,7 @@ body::before {
   font-family: var(--font-mono);
   font-size: 0.9375rem;
   line-height: 1.8;
-  color: #e2e8f0;
+  color: #333333;
   letter-spacing: 0;
 }
 
@@ -872,16 +872,16 @@ body::before {
   
   .card {
     box-shadow: none;
-    border: 1px solid #000;
+    border: 1px solid #ccc;
   }
   
   .code-block {
     background: #fff;
-    border: 1px solid #000;
+    border: 1px solid #ccc;
   }
   
   .code-block code {
-    color: #000;
+    color: #333;
   }
   
   a {
