@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类型系统 - Dart 教程</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Dart 教程</h1>
+                <p class="subtitle">入门到进阶</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="intro.html" class="nav-link">
+                            <span class="nav-icon">🚀</span>
+                            <span>入门</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="basics.html" class="nav-link">
+                            <span class="nav-icon">📝</span>
+                            <span>基础语法</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="types.html" class="nav-link active">
+                            <span class="nav-icon">🔷</span>
+                            <span>类型系统</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="oop.html" class="nav-link">
+                            <span class="nav-icon">🏗️</span>
+                            <span>面向对象</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="null-safety.html" class="nav-link">
+                            <span class="nav-icon">🛡️</span>
+                            <span>空安全</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="async.html" class="nav-link">
+                            <span class="nav-icon">⚡</span>
+                            <span>异步编程</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="functional.html" class="nav-link">
+                            <span class="nav-icon">🔄</span>
+                            <span>函数式编程</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="patterns.html" class="nav-link">
+                            <span class="nav-icon">🎯</span>
+                            <span>模式匹配</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="flutter.html" class="nav-link">
+                            <span class="nav-icon">📱</span>
+                            <span>Flutter 语法</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="advanced.html" class="nav-link">
+                            <span class="nav-icon">💎</span>
+                            <span>进阶专题</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="打开菜单" aria-expanded="false">
+                <span class="menu-icon">☰</span>
+            </button>
+            <div class="content-wrapper">
+                <section class="section active">
+                    <div class="section-header">
+                        <h2 class="section-title">类型系统</h2>
+                        <div class="section-badge">Dart 核心</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>数值类型 (int, double, num)</h3>
+                        <p>Dart 的数值类型包括 int（整数）和 double（浮点数），num 是两者的基类：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>numbers.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // int - 整数（平台相关，64位）
+  int age = 25;
+  int hex = 0xFF;  // 十六进制
+  int binary = 0b1010;  // 二进制
+  int octal = 0755;  // 八进制
+
+  // double - 64位双精度浮点数
+  double pi = 3.14159;
+  double scientific = 1.5e-10;  // 科学计数法
+
+  // num - int 或 double
+  num value = 10;
+  value = 3.14;  // 可以是任意数值
+
+  // ========== 数值运算 ==========
+  int a = 10, b = 3;
+  print(a + b);   // 13 加
+  print(a - b);   // 7  减
+  print(a * b);   // 30 乘
+  print(a / b);   // 3.333... 除（返回double）
+  print(a ~/ b);  // 3  整除
+  print(a % b);   // 1  取余
+  print(a.abs()); // 10 绝对值
+  print((-5).abs()); // 5
+
+  // ========== 类型转换 ==========
+  int.parse('42');        // 字符串转int
+  double.parse('3.14');   // 字符串转double
+  42.toString();          // 转字符串
+  3.14159.toStringAsFixed(2);  // '3.14'
+  3.14159.toInt();       // 3
+
+  // ========== 常用方法 ==========
+  print(42.isEven);   // true 是否偶数
+  print(42.isOdd);    // false 是否奇数
+  print(42.bitLength); // 6 位长度
+  print(42.toRadixString(2)); // '101010' 进制转换
+  print(3.14.round());   // 3 四舍五入
+  print(3.14.ceil());    // 4 向上取整
+  print(3.14.floor());   // 3 向下取整
+  print(3.14.truncate()); // 3 截断
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>字符串 (String)</h3>
+                        <p>Dart 字符串是 UTF-16 编码的字符序列，提供了丰富的操作方法：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>strings.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // ========== 字符串创建 ==========
+  String s1 = '单引号';
+  String s2 = "双引号";
+  String s3 = '''多行
+  字符串''';
+  String s4 = """
+  这是多行
+  字符串""";
+
+  // 原始字符串（不转义）
+  String raw = r'第一行\n第二行';
+  print(raw);  // 输出: 第一行\n第二行
+
+  // ========== 字符串拼接 ==========
+  String name = 'Dart';
+  String greeting = 'Hello, ' + name + '!';
+  String template = 'Hello, $name!';  // 插值
+  String expr = '${name.length} chars';  // 表达式
+
+  // ========== 常用方法 ==========
+  String text = 'Hello, World!';
+  print(text.length);           // 13 长度
+  print(text.isEmpty);          // false 是否空
+  print(text.toUpperCase());    // 'HELLO, WORLD!'
+  print(text.toLowerCase());    // 'hello, world!'
+  print(text.trim());           // 去除首尾空白
+  print(text.contains('World')); // true 是否包含
+  print(text.startsWith('Hello')); // true 是否以...开头
+  print(text.endsWith('!'));    // true 是否以...结尾
+  print(text.indexOf('o'));    // 4 首次出现位置
+  print(text.lastIndexOf('o')); // 8 最后一次位置
+
+  // ========== 子字符串 ==========
+  print(text.substring(0, 5));  // 'Hello' 截取
+  print(text.split(', '));      // ['Hello', 'World!'] 分割
+  print(text.replaceAll('World', 'Dart')); // 替换所有
+
+  // ========== 格式化 ==========
+  String name = 'Alice';
+  int age = 30;
+  // padLeft/padRight
+  print(name.padLeft(10));     // '     Alice'
+  print(name.padRight(10, '*')); // 'Alice*****'
+
+  // ========== Rune（Unicode） ==========
+  String emoji = '😀';
+  print(emoji.runes.toList()); // [128512]
+  // 处理特殊字符
+  '你好'.runes.forEach((r) => print(String.fromCharCode(r)));
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>布尔类型 (bool)</h3>
+                        <p>Dart 布尔类型只有两个值：true 和 false。在条件判断中需要显式使用布尔值：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>booleans.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // ========== 布尔值 ==========
+  bool isActive = true;
+  bool isComplete = false;
+
+  // ========== 逻辑运算 ==========
+  bool a = true, b = false;
+  print(!a);          // false 取反
+  print(a && b);       // false 逻辑与
+  print(a || b);       // true  逻辑或
+
+  // ========== 比较运算 ==========
+  int x = 10, y = 20;
+  print(x == y);       // false 等于
+  print(x != y);       // true  不等于
+  print(x > y);        // false 大于
+  print(x < y);        // true  小于
+  print(x >= y);       // false 大于等于
+  print(x <= y);       // true  小于等于
+
+  // ========== 空值判断 ==========
+  String? name;
+  print(name == null); // true
+
+  // ========== 链式判断 ==========
+  // ??= 空赋值
+  String? username;
+  username ??= 'Guest';
+  print(username);  // 'Guest'
+
+  // ?. 条件成员访问
+  String? text;
+  print(text?.length);  // null（不报错）
+
+  // ?? 空合并
+  String? input;
+  print(input ?? '默认值');  // '默认值'
+
+  // ========== 三元运算符 ==========
+  bool isOnline = true;
+  String status = isOnline ? '在线' : '离线';
+
+  // ========== ??= 简写 ==========
+  int? count;
+  count ??= 0;  // 如果为null则赋值
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>列表 (List)</h3>
+                        <p>List 是 Dart 中最常用的集合类型，表示有序的元素集合：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>lists.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // ========== 创建 List ==========
+  var fruits = ['apple', 'banana', 'orange'];  // 类型推断
+  List<int> numbers = [1, 2, 3, 4, 5];         // 显式类型
+
+  // 固定长度列表
+  var fixed = List<int>.filled(3, 0);  // [0, 0, 0]
+
+  // 可变长度列表
+  var growable = List<String>.empty(growable: true);
+  var fromIterable = List<int>.from([1, 2, 3]);
+
+  // 生成列表
+  var generated = List<int>.generate(5, (i) => i * i);  // [0, 1, 4, 9, 16]
+  var repeated = List<String>.filled(3, 'hi');  // ['hi', 'hi', 'hi']
+
+  // ========== 访问元素 ==========
+  print(fruits[0]);        // 'apple' 下标访问
+  print(fruits.first);     // 'apple' 第一个
+  print(fruits.last);      // 'orange' 最后一个
+  print(fruits.length);    // 3 长度
+  print(fruits.isEmpty);   // false 是否为空
+
+  // ========== 修改列表 ==========
+  fruits.add('grape');           // 末尾添加
+  fruits.insert(1, 'mango');     // 插入
+  fruits.remove('banana');       // 移除
+  fruits.removeAt(0);            // 移除下标
+  fruits.clear();                // 清空
+
+  // ========== 遍历 ==========
+  for (var fruit in fruits) {
+    print(fruit);
+  }
+  fruits.forEach((f) => print(f));
+
+  // ========== 转换 ==========
+  var doubled = numbers.map((n) => n * 2).toList();  // [2, 4, 6, 8, 10]
+  var evens = numbers.where((n) => n % 2 == 0).toList();  // [2, 4]
+  var sum = numbers.fold(0, (a, b) => a + b);  // 15
+
+  // ========== 排序 ==========
+  numbers.sort((a, b) => b - a);  // 降序
+  numbers.shuffle();               // 随机打乱
+
+  // ========== 切片 ==========
+  print(numbers.sublist(1, 3));  // [2, 3] 截取
+
+  // ========== 展开运算符 ==========
+  var flat = [1, ...[2, 3], 4];  // [1, 2, 3, 4]
+  List<int>? extra;
+  var safe = [1, ...?extra, 2];  // [1, 2]（extra为null时不报错）
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>集合 (Set)</h3>
+                        <p>Set 是无序且不重复的元素集合，适合用于去重和成员检测：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>sets.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // ========== 创建 Set ==========
+  var colors = {'red', 'green', 'blue'};  // 类型推断
+  Set<int> numbers = {1, 2, 3};           // 显式类型
+
+  // 空集合
+  var empty = <String>{};
+  var emptySet = Set<String>.empty();
+
+  // ========== 基本操作 ==========
+  print(colors.length);       // 3 长度
+  print(colors.isEmpty);      // false 是否为空
+  print(colors.contains('red'));  // true 是否包含
+  print(colors.containsAll({'red', 'blue'}));  // 是否包含所有
+
+  // ========== 添加/移除 ==========
+  colors.add('yellow');
+  colors.addAll({'purple', 'orange'});
+  colors.remove('green');
+  colors.clear();
+
+  // ========== 集合运算 ==========
+  var a = {1, 2, 3, 4};
+  var b = {3, 4, 5, 6};
+
+  print(a.union(b));      // {1, 2, 3, 4, 5, 6} 并集
+  print(a.intersection(b)); // {3, 4} 交集
+  print(a.difference(b));   // {1, 2} 差集
+  print(a.lookup(2));      // 2 查找（不存在返回null）
+
+  // ========== 去重 ==========
+  var withDup = [1, 2, 2, 3, 3, 3];
+  var unique = withDup.toSet();  // {1, 2, 3}
+
+  // ========== 遍历 ==========
+  colors.forEach((c) => print(c));
+  for (var c in colors) {
+    print(c);
+  }
+
+  // ========== 类型转换 ==========
+  var list = [1, 2, 3];
+  var set = list.toSet();  // List -> Set
+  var backToList = set.toList();  // Set -> List
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>映射 (Map)</h3>
+                        <p>Map 是键值对集合，每个键唯一，值可以重复：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>maps.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // ========== 创建 Map ==========
+  var scores = {'Alice': 90, 'Bob': 85, 'Carol': 92};  // 类型推断
+  Map<String, int> ages = {'Tom': 25, 'Jerry': 30};
+
+  // 空 Map
+  var empty = <String, dynamic>{};
+  var emptyMap = Map<String, int>.empty();
+
+  // 构造方法
+  var from = Map.from({'a': 1, 'b': 2});
+  var of = Map.of({1: 'one', 2: 'two'});
+  var fromIterables = Map.fromIterables([1, 2], ['one', 'two']);
+  var fromEntries = Map.fromEntries([
+    MapEntry('x', 10),
+    MapEntry('y', 20),
+  ]);
+
+  // ========== 访问 ==========
+  print(scores['Alice']);     // 90 获取值
+  print(scores['Unknown']);   // null 不存在返回null
+
+  // 常用方法
+  print(scores.length);       // 3 键值对数量
+  print(scores.isEmpty);      // false 是否为空
+  print(scores.containsKey('Bob'));  // true 是否包含键
+  print(scores.containsValue(90));   // true 是否包含值
+  print(scores.keys);         // (Alice, Bob, Carol) 键集合
+  print(scores.values);       // (90, 85, 92) 值集合
+
+  // ========== 修改 ==========
+  scores['Bob'] = 88;         // 修改值
+  scores['David'] = 95;       // 添加新键值对
+  scores.addAll({'Eve': 88, 'Frank': 91});  // 批量添加
+  scores.remove('Bob');       // 移除
+  scores.clear();             // 清空
+
+  // ========== 获取默认值 ==========
+  // putIfAbsent: 如果键不存在则设置值
+  scores.putIfAbsent('Alice', () => 100);
+
+  // ========== 遍历 ==========
+  scores.forEach((key, value) {
+    print('$key: $value');
+  });
+
+  for (var entry in scores.entries) {
+    print('${entry.key} = ${entry.value}');
+  }
+
+  // ========== 映射操作 ==========
+  var mapped = scores.map((k, v) => MapEntry(k.toUpperCase(), v + 10));
+  var keys = scores.keys.map((k) => k.toUpperCase()).toList();
+
+  // ========== 合并 ==========
+  var m1 = {'a': 1, 'b': 2};
+  var m2 = {'b': 3, 'c': 4};
+  var merged = {...m1, ...m2};  // {'a': 1, 'b': 3, 'c': 4}
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Rune、Symbol、Function</h3>
+                        <p>Rune 是 UTF-32 字符编码，Symbol 表示标识符，Function 是函数类型：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>rune_symbol.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // ========== Rune ==========
+  // String 是 UTF-16 序列，有些字符需要多个代码单元
+  // Rune 是 UTF-32 完整字符
+
+  String emoji = '😀';
+  print(emoji.runes);  // (128512) Unicode 码点
+
+  // 遍历 Rune
+  '你好'.runes.forEach((r) {
+    print('Code: $r, Char: ${String.fromCharCode(r)}');
+  });
+
+  // 处理特殊字符
+  String name = 'Café';
+  print(name.runes.toList());  // [67, 97, 102, 233]
+
+  // 使用 Rune 构造字符串
+  String fromRunes = String.fromCharCodes([72, 101, 108, 108, 111]);  // 'Hello'
+
+  // ========== Symbol ==========
+  // Symbol 表示标识符，用于反射和元编程
+
+  // 定义 Symbol
+  Symbol sym = #myIdentifier;
+  Symbol methodSym = #toString;
+  Symbol classSym = #MyClass;
+
+  // 字符串转 Symbol
+  Symbol fromString = Symbol('myIdentifier');
+
+  // 比较
+  print(sym == fromString);  // true
+
+  // ========== Function 类型 ==========
+  // 函数是一等公民，可以赋值给变量
+  Function add = (int a, int b) => a + b;
+  print(add(2, 3));  // 5
+
+  // 具体函数类型
+  int Function(int, int) multiply = (a, b) => a * b;
+  print(multiply(4, 5));  // 20
+
+  // ========== Type 类型 ==========
+  // 表示运行时类型信息
+  Type intType = int;
+  Type stringType = String;
+  print(intType);  // 'int'
+  print(42.runtimeType);  // int
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>枚举 (enum)</h3>
+                        <p>枚举是一种特殊的类，用于定义固定数量的常量值：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>enums.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // ========== 基础枚举 ==========
+  enum Color { red, green, blue }
+
+  print(Color.red);    // Color.red
+  print(Color.red.index);  // 0
+
+  // 遍历枚举
+  for (var c in Color.values) {
+    print(c);
+  }
+
+  // switch 匹配
+  var color = Color.blue;
+  switch (color) {
+    case Color.red:
+      print('红色');
+      break;
+    case Color.green:
+      print('绿色');
+      break;
+    case Color.blue:
+      print('蓝色');
+  }
+
+  // ========== 带值的枚举 ==========
+  enum Status {
+    success(200, '成功'),
+    error(500, '错误'),
+    pending(100, '处理中');
+
+  final int code;
+  final String message;
+
+  const Status(this.code, this.message);
+
+  String toJson() => '{"code": $code, "message": "$message"}';
+  }
+
+  print(Status.success.code);  // 200
+  print(Status.success.message);  // '成功'
+}
+
+enum Priority {
+  low(1),
+  medium(2),
+  high(3);
+
+  final int value;
+  const Priority(this.value);
+
+  bool get isHigh => this == Priority.high;
+}
+
+void process(Priority priority) {
+  if (priority.isHigh) {
+    print('高优先级任务');
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>泛型</h3>
+                        <p>泛型提供类型参数化，使代码更加灵活和安全：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>generics.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>// ========== 泛型类 ==========
+class Box<T> {
+  T? _value;
+  void set(T value) => _value = value;
+  T get() => _value as T;
+}
+
+class Pair<K, V> {
+  final K key;
+  final V value;
+  Pair(this.key, this.value);
+}
+
+// ========== 泛型约束 ==========
+class Repository<T extends Entity> {
+  final Map<int, T> _cache = {};
+
+  T? findById(int id) => _cache[id];
+  void save(T entity) => _cache[entity.id] = entity;
+}
+
+abstract class Entity {
+  int get id;
+}
+
+// ========== 泛型方法 ==========
+T first<T>(List<T> items) => items.first;
+
+T? firstOrNull<T>(List<T> items) =>
+    items.isEmpty ? null : items.first;
+
+R map<T, R>(List<T> items, R Function(T) transform) =>
+    items.map(transform).toList();
+
+void main() {
+  var stringBox = Box<String>();
+  stringBox.set('Dart');
+  print(stringBox.get());
+
+  var pair = Pair('name', 'Dart');
+  print('${pair.key}: ${pair.value}');
+
+  var users = <User>[User(1), User(2)];
+  var repo = Repository<User>();
+}
+
+class User implements Entity {
+  final int id;
+  User(this.id);
+
+  @override
+  int get id => id;
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>类型推断</h3>
+                        <p>Dart 具有强大的类型推断能力：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>type_inference.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // var - 类型推断
+  var message = 'Hello';     // 推断为 String
+  var count = 42;            // 推断为 int
+  var prices = [1.5, 2.0];  // 推断为 List<double>
+
+  // dynamic - 动态类型（绕过类型检查）
+  dynamic anything = 'str';
+  anything = 123;  // 可以是任何类型
+
+  // Object - 任何类型
+  Object obj = 'anything';
+  obj = 42;
+
+  // 泛型推断
+  var stringMap = <String, String>{'key': 'value'};
+  var intList = <int>[1, 2, 3];
+
+  // 类型转换
+  var num = 42;
+  var str = num.toString();
+  var doubleNum = double.parse('3.14');
+
+  // 明确类型声明（推荐）
+  String name = 'Dart';
+  List<int> numbers = [1, 2, 3];
+  Map<String, dynamic> data = {'name': 'test', 'value': 42};
+
+  // final 和 const 也支持类型推断
+  final inferredList = [1, 2, 3];  // List<int>
+  const inferredMap = {'a': 1};   // Map<String, int>
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

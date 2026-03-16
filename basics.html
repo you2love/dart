@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础语法 - Dart 教程</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Dart 教程</h1>
+                <p class="subtitle">入门到进阶</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="intro.html" class="nav-link">
+                            <span class="nav-icon">🚀</span>
+                            <span>入门</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="basics.html" class="nav-link active">
+                            <span class="nav-icon">📝</span>
+                            <span>基础语法</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="types.html" class="nav-link">
+                            <span class="nav-icon">🔷</span>
+                            <span>类型系统</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="oop.html" class="nav-link">
+                            <span class="nav-icon">🏗️</span>
+                            <span>面向对象</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="null-safety.html" class="nav-link">
+                            <span class="nav-icon">🛡️</span>
+                            <span>空安全</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="async.html" class="nav-link">
+                            <span class="nav-icon">⚡</span>
+                            <span>异步编程</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="functional.html" class="nav-link">
+                            <span class="nav-icon">🔄</span>
+                            <span>函数式编程</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="patterns.html" class="nav-link">
+                            <span class="nav-icon">🎯</span>
+                            <span>模式匹配</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="flutter.html" class="nav-link">
+                            <span class="nav-icon">📱</span>
+                            <span>Flutter 语法</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="advanced.html" class="nav-link">
+                            <span class="nav-icon">💎</span>
+                            <span>进阶专题</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="打开菜单" aria-expanded="false">
+                <span class="menu-icon">☰</span>
+            </button>
+            <div class="content-wrapper">
+                <section class="section active">
+                    <div class="section-header">
+                        <h2 class="section-title">基础语法</h2>
+                        <div class="section-badge">变量、函数、控制流</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>变量与常量</h3>
+                        <p>Dart 使用 var、final 和 const 声明变量：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>variables.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // 类型推断
+  var name = 'Dart';
+  var version = 3.0;
+
+  // 显式类型声明
+  String language = 'Dart';
+  int year = 2011;
+
+  // final - 运行时常量
+  final now = DateTime.now();
+
+  // const - 编译时常量
+  const pi = 3.14159;
+  const maxItems = 100;
+
+  // late 延迟初始化
+  late String lateValue;
+  lateValue = '初始化完成';
+
+  print('$name $version');  // Dart 3.0
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>函数</h3>
+                        <p>Dart 函数支持多种声明方式：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>functions.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>// 基本函数
+int add(int a, int b) {
+  return a + b;
+}
+
+// 箭头函数（单表达式函数）
+int multiply(int a, int b) => a * b;
+
+// 可选命名参数
+void greet({required String name, String greeting = 'Hello'}) {
+  print('$greeting, $name!');
+}
+
+// 可选位置参数
+String say(String from, String msg, [String? device]) {
+  var result = '$from says $msg';
+  if (device != null) {
+    result = '$result with a $device';
+  }
+  return result;
+}
+
+// 函数作为参数
+void forEach(List<int> items, void Function(int) action) {
+  for (var item in items) {
+    action(item);
+  }
+}
+
+void main() {
+  print(add(1, 2));           // 3
+  print(multiply(3, 4));       // 12
+  greet(name: 'Dart');         // Hello, Dart!
+  say('Bob', 'Hello');        // Bob says Hello
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>控制流</h3>
+                        <p>条件语句、循环和流程控制：</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>control_flow.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // if-else
+  var score = 85;
+  if (score >= 90) {
+    print('A');
+  } else if (score >= 80) {
+    print('B');
+  } else {
+    print('C');
+  }
+
+  // for 循环
+  for (var i = 0; i < 5; i++) {
+    print(i);
+  }
+
+  // for-in 循环
+  var items = ['apple', 'banana', 'orange'];
+  for (var item in items) {
+    print(item);
+  }
+
+  // forEach
+  items.forEach((item) => print(item));
+
+  // while 和 do-while
+  var count = 0;
+  while (count < 3) {
+    print(count++);
+  }
+
+  // switch
+  var day = 2;
+  switch (day) {
+    case 1:
+      print('Monday');
+      break;
+    case 2:
+      print('Tuesday');
+      break;
+    default:
+      print('Other day');
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>运算符</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>operators.dart</span>
+                                <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                            </div>
+                            <pre><code>void main() {
+  // 算术运算符
+  var a = 10;
+  var b = 3;
+  print(a + b);   // 13
+  print(a - b);   // 7
+  print(a * b);   // 30
+  print(a / b);    // 3.333...
+  print(a ~/ b);  // 3 (整数除法)
+  print(a % b);   // 1 (取余)
+
+  // 类型运算符
+  var num = 42;
+  print(num is int);        // true
+  print(num is! String);    // true
+
+  // 空安全运算符
+  String? name;
+  print(name?.length);      // null
+  print(name ?? 'default'); // default
+  name ??= 'Dart';
+  print(name);              // Dart
+
+  // 级联运算符
+  var list = []
+    ..add(1)
+    ..add(2)
+    ..add(3);
+  print(list);             // [1, 2, 3]
+
+  // 扩展运算符
+  var parts = [1, 2];
+  var combined = [0, ...parts, 3];
+  print(combined);         // [0, 1, 2, 3]
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

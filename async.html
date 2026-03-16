@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>异步编程 - Dart 教程</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header"><h1>Dart 教程</h1><p class="subtitle">入门到进阶</p></div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="intro.html" class="nav-link"><span class="nav-icon">🚀</span><span>入门</span></a></li>
+                    <li class="nav-item"><a href="basics.html" class="nav-link"><span class="nav-icon">📝</span><span>基础语法</span></a></li>
+                    <li class="nav-item"><a href="types.html" class="nav-link"><span class="nav-icon">🔷</span><span>类型系统</span></a></li>
+                    <li class="nav-item"><a href="oop.html" class="nav-link"><span class="nav-icon">🏗️</span><span>面向对象</span></a></li>
+                    <li class="nav-item"><a href="null-safety.html" class="nav-link"><span class="nav-icon">🛡️</span><span>空安全</span></a></li>
+                    <li class="nav-item"><a href="async.html" class="nav-link active"><span class="nav-icon">⚡</span><span>异步编程</span></a></li>
+                    <li class="nav-item"><a href="functional.html" class="nav-link"><span class="nav-icon">🔄</span><span>函数式编程</span></a></li>
+                    <li class="nav-item"><a href="patterns.html" class="nav-link"><span class="nav-icon">🎯</span><span>模式匹配</span></a></li>
+                    <li class="nav-item"><a href="flutter.html" class="nav-link"><span class="nav-icon">📱</span><span>Flutter 语法</span></a></li>
+                    <li class="nav-item"><a href="advanced.html" class="nav-link"><span class="nav-icon">💎</span><span>进阶专题</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="content-wrapper">
+                <section class="section active">
+                    <div class="section-header"><h2 class="section-title">异步编程</h2><div class="section-badge">Future、Stream</div></div>
+                    <div class="card">
+                        <h3>Future</h3>
+                        <div class="code-block">
+                            <div class="code-header"><span>future.dart</span><button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+                            <pre><code>Future<String> fetchUser() async {
+  await Future.delayed(Duration(seconds: 1));
+  return 'User Data';
+}
+
+void main() async {
+  var user = await fetchUser();
+  print(user);
+  fetchUser().then((data) => print('Then: $data'));
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Stream</h3>
+                        <div class="code-block">
+                            <div class="code-header"><span>stream.dart</span><button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+                            <pre><code>Stream<int> countStream(int max) async* {
+  for (int i = 1; i <= max; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i;
+  }
+}
+
+void main() {
+  countStream(3).listen((v) => print('Received: $v'));
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
