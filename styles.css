@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
+  /* 默认浅色主题 */
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
@@ -9,25 +10,26 @@
   --primary-dark: #5a67d8;
   --primary-light: #7c8ef8;
   --accent-color: #f5576c;
-  --success-color: #00f2fe;
-  --warning-color: #f093fb;
-  --error-color: #ff6b6b;
+  --success-color: #00c851;
+  --warning-color: #ffbb33;
+  --error-color: #ff4444;
 
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #141414;
-  --bg-card: #1a1a1a;
-  --bg-code: #0d0d0d;
+  /* 浅色主题 - 白底黑字 */
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-code: #1e1e1e;
 
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #707070;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a4a;
+  --text-muted: #7a7a7a;
   --text-light: #ffffff;
 
-  --border-color: #2a2a2a;
-  --border-hover: #4a4a4a;
+  --border-color: #e0e0e0;
+  --border-hover: #c0c0c0;
 
-  --glass-bg: rgba(26, 26, 26, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(0, 0, 0, 0.1);
 
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
@@ -47,21 +49,22 @@
   --font-mono: 'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
 }
 
-[data-theme="light"] {
-  --bg-primary: #f8f9fa;
-  --bg-secondary: #ffffff;
-  --bg-card: #ffffff;
-  --bg-code: #1a1a2e;
+/* 暗色主题 */
+[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-card: #1a1a1a;
+  --bg-code: #0d0d0d;
 
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4a4a;
-  --text-muted: #7a7a7a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #707070;
 
-  --border-color: #e0e0e0;
-  --border-hover: #c0c0c0;
+  --border-color: #2a2a2a;
+  --border-hover: #4a4a4a;
 
-  --glass-bg: rgba(255, 255, 255, 0.9);
-  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(26, 26, 26, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 * {

@@ -1,9 +1,9 @@
 // 状态管理
 const state = {
-  currentSection: 'overview',
+  currentSection: 'intro',
   theme: 'light',
   progress: 0,
-  sections: ['overview', 'type-system', 'async-programming', 'oop', 'null-safety', 'functional', 'patterns', 'comparison']
+  sections: ['intro', 'basics', 'types', 'oop', 'null-safety', 'async', 'functional', 'patterns', 'advanced']
 };
 
 // DOM 元素
