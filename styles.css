@@ -527,6 +527,7 @@ body::before {
   font-weight: 600;
   font-family: var(--font-mono);
   letter-spacing: 0.0125em;
+  flex: 1;
 }
 
 .code-header-actions {
