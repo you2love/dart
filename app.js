@@ -3,7 +3,7 @@ const state = {
   currentSection: 'intro',
   theme: 'light',
   progress: 0,
-  sections: ['intro', 'basics', 'types', 'oop', 'null-safety', 'async', 'functional', 'patterns', 'advanced']
+  sections: ['intro', 'basics', 'types', 'oop', 'null-safety', 'async', 'functional', 'patterns', 'flutter', 'advanced']
 };
 
 // DOM 元素
